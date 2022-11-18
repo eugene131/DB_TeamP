@@ -241,6 +241,192 @@ public class MedicineQuery {
 		
 	}
 	
+	// 약 주문
+	public static void medicine_order(Connection conn, Statement stmt, String clientID) {
+		System.out.println("\n----------------------------------");
+		System.out.println("-------- [ 약 주문 및 주문취소 ] --------");
+		System.out.println("1. 약 번호 찾기");
+		System.out.println("2. 약 주문 기록 조회");
+		System.out.println("3. 약 주문");
+		System.out.println("4. 약 주문 취소");
+		ResultSet rs = null;
+		
+		System.out.print("* 번호 입력: ");
+		Scanner sc = new Scanner(System.in);
+		int i = sc.nextInt();
+		sc.nextLine();
+		
+		switch (i) {
+			case 1: // 새로운 주문이 생기는 경우
+				// 주문하고자 하는 약 번호 조회
+				System.out.print("\n* 약 이름 입력: ");
+				String m_name = sc.nextLine();
+				try {
+					stmt = conn.createStatement();
+					String sql = "SELECT M_number, NAME"
+							+ " FROM MEDICINE"
+							+ " WHERE Name LIKE '%"+m_name+"%'"
+							+ " ORDER BY M_number";
+					
+					rs = stmt.executeQuery(sql);
+					System.out.println("\n<< 약 검색결과 >>");
+					System.out.println("약 번호 | 약 이름 ");
+					System.out.println("----------------");
+					int cnt = 0;
+					while(rs.next()) {
+						// Fill out your code	
+						String m_num = rs.getString(1);
+						String mname = rs.getString(2);
+						System.out.println(m_num+" | "+mname);
+						cnt++;
+					}
+					if (cnt == 0) {
+						System.out.println("약 이름 "+m_name+" (으)로 조회된 결과가 없습니다.");
+					}
+					System.out.println("\n");
+					stmt.close(); 
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				break;
+			case 2:
+				// 약 주문기록 조회
+				System.out.print("\n* 주문 번호: ");
+				String o_num3 = sc.nextLine();
+				System.out.print("* 약사 ID: ");
+				String chemistID3 = sc.nextLine();
+
+				try {
+					stmt = conn.createStatement();
+					
+					String sql = "SELECT Order_num, M_number, Count, Order_date, Prescription, Chemist_ID"
+							+ " FROM M_ORDER NATURAL JOIN CONTAIN "
+									+ " WHERE Order_num = "+o_num3
+									+ " AND Chemist_ID = "+chemistID3;
+					
+					rs = stmt.executeQuery(sql);
+					System.out.println("\n<< 주문기록 검색결과 >>");
+					System.out.println("주문 번호 | 약 번호 | 수량 | 주문 날짜 | 처방전 유무 | 약사ID ");
+					System.out.println("-----------------------------------------------------");
+					int cnt = 0;
+					while(rs.next()) {
+						// Fill out your code	
+						String order_num = rs.getString(1);
+						String m_num = rs.getString(2);
+						String o_count = rs.getString(3);
+						SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
+						Date o_date = rs.getDate(4);
+						String order_day = sdfDate.format(o_date);
+						int prescript = rs.getInt(5);
+						String chemist_ID = rs.getString(6);
+						if (prescript == 1) {
+							System.out.println(order_num+" | "+m_num+" | "+o_count+" | "+order_day+" | "+"O | "+chemist_ID );
+						}
+						else {
+							System.out.println(order_num+" | "+m_num+" | "+o_count+" | "+order_day+" | "+"X | "+chemist_ID );
+						}
+						cnt++;
+					}
+					if (cnt == 0) {
+						System.out.println("* 해당 조건의 주문 기록이 없습니다.");
+					}
+					stmt.close(); 
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					System.out.println("* 해당 조건의 주문 기록이 없습니다.");
+					e.printStackTrace();
+				}
+				break;
+			case 3:
+				// 약 주문하기
+				String o_prescription = "";
+				System.out.print("\n* 약 번호: ");
+				String m_num = sc.nextLine();
+				System.out.print("* 수량: ");
+				String m_count = sc.nextLine();
+				System.out.print("* 주문 날짜 (yyyy-mm-dd): ");
+				String o_date = sc.nextLine();
+				System.out.print("* 처방전 유무(o/x): ");
+				String p = sc.nextLine();
+				if (p.equals("o") || p.equals("O"))
+					o_prescription = "1";
+				else if (p.equals("x") || p.equals("X"))
+					o_prescription = "0";
+				else {
+					System.out.println("* 잘못된 입력입니다.");
+					break;
+				}
+				System.out.print("* 주문받은 약사 ID: ");
+				String chemistID = sc.nextLine();
+				
+				System.out.print("* 주문 번호: ");
+				String o_num = sc.nextLine();
+				
+				try {
+					stmt = conn.createStatement();
+					
+					String sql = "INSERT INTO M_ORDER VALUES ("
+							+ o_num + ", TO_DATE('" + o_date
+									+ "', 'yyyy-mm-dd'), "+o_prescription
+									+ ", "+chemistID+", "+clientID+")";
+					
+					rs = stmt.executeQuery(sql);
+					
+					sql = "INSERT INTO CONTAIN VALUES ("
+							+ m_num + ", " + o_num
+									+ ", " + m_count
+									+ ", "+chemistID+", '"+clientID+"')";
+					rs = stmt.executeQuery(sql);
+					
+					
+					System.out.println("\n* 주문이 확인되었습니다.");
+					System.out.println("\n");
+					stmt.close(); 
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					System.out.println("* 잘못된 주문입니다.");
+					e.printStackTrace();
+				}
+				break;
+			case 4:
+				// 약 주문취소
+				System.out.print("\n* 주문 번호: ");
+				String o_num2 = sc.nextLine();
+				System.out.print("* 약사 ID: ");
+				String chemistID2 = sc.nextLine();
+
+				try {
+					stmt = conn.createStatement();
+					
+					String sql = "DELETE FROM M_ORDER"
+							+ " WHERE Order_num = "+o_num2
+									+ " AND Client_ID = '"+clientID+"'"
+									+ " AND Chemist_ID = "+chemistID2;
+					
+					rs = stmt.executeQuery(sql);
+					
+					System.out.println("\n* 주문이 취소되었습니다.");
+					System.out.println("\n");
+					stmt.close(); 
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					System.out.println("* 해당 조건의 주문 기록이 없습니다.");
+					e.printStackTrace();
+				}
+				break;
+			default:
+				System.out.println("* 잘못된 입력입니다.");
+				break;
+		}
+		
+	}
+	
 	public static void main(String[] args) {
 		Connection conn = null; // Connection object
 		Statement stmt = null;	// Statement object
@@ -320,8 +506,9 @@ public class MedicineQuery {
 				System.out.println("2. 약국 이름 검색");
 				System.out.println("3. 약국 위치 검색");
 				System.out.println("4. 이전 주문기록 조회");
-				System.out.println("5. 병력기록 추가");
-				System.out.println("6. 개인정보 수정");
+				System.out.println("5. 주문 추가 및 삭제");
+				System.out.println("6. 병력기록 추가");
+				System.out.println("7. 개인정보 수정");
 				System.out.println("0. 종료\n");
 				
 				System.out.print("* 번호 입력: ");
@@ -346,10 +533,13 @@ public class MedicineQuery {
 					System.out.println("4");
 					break;
 				case 5:
-					System.out.println("5");
+					medicine_order(conn, stmt, clientID);
 					break;
 				case 6:
 					System.out.println("6");
+					break;
+				case 7:
+					System.out.println("7");
 					break;
 				default:
 					System.out.println("잘못된 입력입니다.");
@@ -357,7 +547,7 @@ public class MedicineQuery {
 			}
 			
 		case 2:
-			System.out.print("client ID: ");
+			System.out.print("chemist ID: ");
 			String chemistID = sc.nextLine();
 			
 			// 존재하는 client ID인지 확인
