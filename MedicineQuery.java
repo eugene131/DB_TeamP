@@ -242,7 +242,7 @@ public class MedicineQuery {
 		
 	}
 	
-	// 약 주문
+	// 약 주문하기
 	public static void medicine_order(Connection conn, Statement stmt, String clientID) {
 		System.out.println("\n----------------------------------");
 		System.out.println("-------- [ 약 주문 및 주문취소 ] --------");
@@ -950,9 +950,9 @@ public class MedicineQuery {
 			System.out.print("chemist ID: ");
 			String chemistID = sc.nextLine();
 			
-			// 존재하는 client ID인지 확인
+			// 존재하는 chemist ID인지 확인
 			try {
-				stmt = conn.createStatement();
+				//stmt = conn.createStatement();
 				// Q1: Complete your query.
 				String sql = "SELECT ID"
 						+ " FROM CHEMIST"
@@ -974,7 +974,7 @@ public class MedicineQuery {
 					System.out.println("* 로그인 성공");
 				}
 				System.out.println("\n");
-				stmt.close(); 
+				//stmt.close(); 
 				rs.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
