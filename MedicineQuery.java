@@ -936,7 +936,7 @@ public class MedicineQuery {
 					case_insert(conn, stmt, clientID);
 					break;
 				case 6:
-					case_insert(conn, stmt, clientID);
+					case_search(conn, stmt, clientID);
 					break;
 				case 7:
 					update_client_info(conn, stmt, clientID);
