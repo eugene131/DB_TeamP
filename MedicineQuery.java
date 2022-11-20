@@ -1,4 +1,3 @@
-package medic;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,11 +13,11 @@ public class MedicineQuery {
 	public static final String USER_UNIVERSITY ="medicine";
 	public static final String USER_PASSWD ="comp322";
 
-	// ì•½êµ­ì´ë¦„ìœ¼ë¡œ ì•½êµ­ì˜ ìœ„ì¹˜ ê²€ìƒ‰
+	// ¾à±¹ÀÌ¸§À¸·Î ¾à±¹ÀÇ À§Ä¡ °Ë»ö
 	public static void pharmacy_location(Connection conn, Statement stmt) {
 		System.out.println("\n-------------------------------");
-		System.out.println("-------- [ ì•½êµ­ ìœ„ì¹˜ ê²€ìƒ‰ ] --------");
-		System.out.print("ì•½êµ­ì´ë¦„: ");
+		System.out.println("-------- [ ¾à±¹ À§Ä¡ °Ë»ö ] --------");
+		System.out.print("¾à±¹ÀÌ¸§: ");
 		
 		String pharmacy_name = "";
 
@@ -34,8 +33,8 @@ public class MedicineQuery {
 					+ " WHERE Name LIKE '%"+pharmacy_name+"%'"
 					+ " ORDER BY NAME";
 			rs = stmt.executeQuery(sql);
-			System.out.println("\n<< ì•½êµ­ ê²€ìƒ‰ ê²°ê³¼ >>");
-			System.out.println("ì•½êµ­ì´ë¦„ | ì£¼ì†Œ");
+			System.out.println("\n<< ¾à±¹ °Ë»ö °á°ú >>");
+			System.out.println("¾à±¹ÀÌ¸§ | ÁÖ¼Ò");
 			System.out.println("-------------------------------");
 			int cnt = 0;
 			while(rs.next()) {
@@ -46,7 +45,7 @@ public class MedicineQuery {
 				cnt++;
 			}
 			if (cnt == 0) {
-				System.out.println(pharmacy_name+" (ìœ¼)ë¡œ ì¡°íšŒëœ ì•½êµ­ì´ ì—†ìŠµë‹ˆë‹¤.");
+				System.out.println(pharmacy_name+" (À¸)·Î Á¶È¸µÈ ¾à±¹ÀÌ ¾ø½À´Ï´Ù.");
 			}
 			System.out.println("\n");
 			//stmt.close(); 
@@ -57,10 +56,10 @@ public class MedicineQuery {
 		}
 	}
 	
-	// ì´ë¦„, ì „í™”ë²ˆí˜¸, ìƒì¼ ê²€ìƒ‰í•´ì„œ ì „í™”ë²ˆí˜¸, ì£¼ì†Œ update
+	// ÀÌ¸§, ÀüÈ­¹øÈ£, »ıÀÏ °Ë»öÇØ¼­ ÀüÈ­¹øÈ£, ÁÖ¼Ò update
 	public static void update_client_info(Connection conn, Statement stmt, String clientID) {
 		System.out.println("\n-----------------------------------------");
-		System.out.println("-------- [ "+clientID+" ë‹˜ì˜ ê°œì¸ì •ë³´ ] --------");
+		System.out.println("-------- [ "+clientID+" ´ÔÀÇ °³ÀÎÁ¤º¸ ] --------");
 		
 		ResultSet rs = null;
 		try {
@@ -74,33 +73,33 @@ public class MedicineQuery {
 			rs.next();
 			String c_name = rs.getString(1);
 			String c_sex = rs.getString(2);
-			SimpleDateFormat sdfDate = new SimpleDateFormat("yyyyë…„ MMì›” ddì¼");
+			SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy³â MM¿ù ddÀÏ");
 			Date Birthday = rs.getDate(3);
 			String c_birthday = sdfDate.format(Birthday);
 			String c_address = rs.getString(4);
 			String c_phone_num = rs.getString(5);
-			System.out.println("ì´ë¦„: "+c_name);
+			System.out.println("ÀÌ¸§: "+c_name);
 			if (c_sex.equals("M"))
-				System.out.println("ì„±ë³„: ë‚¨");
+				System.out.println("¼ºº°: ³²");
 			else
-				System.out.println("ì„±ë³„: ì—¬");
-			System.out.println("ìƒì¼: "+c_birthday);
-			System.out.println("ì£¼ì†Œ: "+c_address);
-			System.out.println("ì „í™”ë²ˆí˜¸: "+c_phone_num);
+				System.out.println("¼ºº°: ¿©");
+			System.out.println("»ıÀÏ: "+c_birthday);
+			System.out.println("ÁÖ¼Ò: "+c_address);
+			System.out.println("ÀüÈ­¹øÈ£: "+c_phone_num);
 			System.out.println("\n");
 			
 			
-			System.out.println("* í¸ì§‘í•˜ì‹œê² ìŠµë‹ˆê¹Œ? [y/n]");
+			System.out.println("* ÆíÁıÇÏ½Ã°Ú½À´Ï±î? [y/n]");
 			Scanner sc = new Scanner(System.in);
 			String u = sc.nextLine();
 			if (u.equals("y") || u.equals("Y")) {
-				System.out.println("* ìˆ˜ì •í•˜ê³ ì í•˜ëŠ” í•­ëª©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
-				System.out.print("ì£¼ì†Œ: ");
+				System.out.println("* ¼öÁ¤ÇÏ°íÀÚ ÇÏ´Â Ç×¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+				System.out.print("ÁÖ¼Ò: ");
 				String address = sc.nextLine();
-				System.out.print("ì „í™”ë²ˆí˜¸: ");
+				System.out.print("ÀüÈ­¹øÈ£: ");
 				String phone_num = sc.nextLine();
 				if (phone_num.length() != 11) {
-					System.out.println("* ì˜ëª»ëœ ì „í™”ë²ˆí˜¸ ì…ë ¥ì…ë‹ˆë‹¤.");
+					System.out.println("* Àß¸øµÈ ÀüÈ­¹øÈ£ ÀÔ·ÂÀÔ´Ï´Ù.");
 				}
 				else {
 					sql = "UPDATE CLIENT"
@@ -108,16 +107,16 @@ public class MedicineQuery {
 									+ "WHERE ID = '"+clientID+"'";
 					rs = stmt.executeQuery(sql);
 					
-					System.out.println("* ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
+					System.out.println("* ¼öÁ¤µÇ¾ú½À´Ï´Ù.");
 					
 				}
 				
 			}
 			else if (u.equals("N") || u.equals("n")) {
-				System.out.println("* ê°œì¸ì •ë³´ ìˆ˜ì •ì„ ì·¨ì†Œí•©ë‹ˆë‹¤.");
+				System.out.println("* °³ÀÎÁ¤º¸ ¼öÁ¤À» Ãë¼ÒÇÕ´Ï´Ù.");
 			}
 			else {
-				System.out.println("* ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.");
+				System.out.println("* Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.");
 			}
 			
 			//stmt.close(); 
@@ -128,22 +127,22 @@ public class MedicineQuery {
 		}
 	}
 	
-	// ì–´ë–¤ ì•½ì„ ì„ íƒí•˜ë©´ ê·¸ ì•½ì„ êµ¬ë§¤í–ˆë˜ ì£¼ë¬¸ê¸°ë¡ ì¡°íšŒ
+	// ¾î¶² ¾àÀ» ¼±ÅÃÇÏ¸é ±× ¾àÀ» ±¸¸ÅÇß´ø ÁÖ¹®±â·Ï Á¶È¸
 	public static void show_medicine_history(Connection conn, Statement stmt) {
 		System.out.println("\n----------------------------------");
-		System.out.println("-------- [ ì•½ ì£¼ë¬¸ ê¸°ë¡ ì¡°íšŒ ] --------");
-		System.out.println("1. ì•½ ì´ë¦„ìœ¼ë¡œ ì¡°íšŒ");
-		System.out.println("2. ì•½ ë²ˆí˜¸ë¡œ ì¡°íšŒ");
+		System.out.println("-------- [ ¾à ÁÖ¹® ±â·Ï Á¶È¸ ] --------");
+		System.out.println("1. ¾à ÀÌ¸§À¸·Î Á¶È¸");
+		System.out.println("2. ¾à ¹øÈ£·Î Á¶È¸");
 		ResultSet rs = null;
 		
-		System.out.print("* ë²ˆí˜¸ ì…ë ¥: ");
+		System.out.print("* ¹øÈ£ ÀÔ·Â: ");
 		Scanner sc = new Scanner(System.in);
 		int i = sc.nextInt();
 		sc.nextLine();
 		
 		switch (i) {
 			case 1: 
-				System.out.print("* ì•½ ì´ë¦„: ");
+				System.out.print("* ¾à ÀÌ¸§: ");
 				String m_name = sc.nextLine();
 				try {
 					//stmt = conn.createStatement();
@@ -156,8 +155,8 @@ public class MedicineQuery {
 							+ " ORDER BY O.Order_date";
 					
 					rs = stmt.executeQuery(sql);
-					System.out.println("\n<< ì•½ ì£¼ë¬¸ê¸°ë¡ ê²€ìƒ‰ê²°ê³¼ >>");
-					System.out.println("ê³ ê° ID | ì•½ ì´ë¦„ | ì£¼ë¬¸ ë‚ ì§œ | ìˆ˜ëŸ‰ | ì²˜ë°©ì „ ìœ ë¬´");
+					System.out.println("\n<< ¾à ÁÖ¹®±â·Ï °Ë»ö°á°ú >>");
+					System.out.println("°í°´ ID | ¾à ÀÌ¸§ | ÁÖ¹® ³¯Â¥ | ¼ö·® | Ã³¹æÀü À¯¹«");
 					System.out.println("-----------------------------------------");
 					int cnt = 0;
 					while(rs.next()) {
@@ -178,7 +177,7 @@ public class MedicineQuery {
 						cnt++;
 					}
 					if (cnt == 0) {
-						System.out.println(m_name+" (ìœ¼)ë¡œ ì¡°íšŒëœ ì£¼ë¬¸ê¸°ë¡ì´ ì—†ìŠµë‹ˆë‹¤.");
+						System.out.println(m_name+" (À¸)·Î Á¶È¸µÈ ÁÖ¹®±â·ÏÀÌ ¾ø½À´Ï´Ù.");
 					}
 					System.out.println("\n");
 					//stmt.close(); 
@@ -189,7 +188,7 @@ public class MedicineQuery {
 				}
 				break;
 			case 2:
-				System.out.print("* ì•½ ë²ˆí˜¸: ");
+				System.out.print("* ¾à ¹øÈ£: ");
 				String m_num = sc.nextLine();
 				try {
 					//stmt = conn.createStatement();
@@ -202,8 +201,8 @@ public class MedicineQuery {
 							+ " ORDER BY O.Order_date";
 					
 					rs = stmt.executeQuery(sql);
-					System.out.println("\n<< ì•½ ì£¼ë¬¸ê¸°ë¡ ê²€ìƒ‰ê²°ê³¼ >>");
-					System.out.println("ê³ ê° ID | ì•½ ì´ë¦„ | ì£¼ë¬¸ ë‚ ì§œ | ìˆ˜ëŸ‰ | ì²˜ë°©ì „ ìœ ë¬´");
+					System.out.println("\n<< ¾à ÁÖ¹®±â·Ï °Ë»ö°á°ú >>");
+					System.out.println("°í°´ ID | ¾à ÀÌ¸§ | ÁÖ¹® ³¯Â¥ | ¼ö·® | Ã³¹æÀü À¯¹«");
 					System.out.println("-----------------------------------------");
 					int cnt = 0;
 					while(rs.next()) {
@@ -224,7 +223,7 @@ public class MedicineQuery {
 						cnt++;
 					}
 					if (cnt == 0) {
-						System.out.println("ì•½ ë²ˆí˜¸ "+m_num+" (ìœ¼)ë¡œ ì¡°íšŒëœ ì£¼ë¬¸ê¸°ë¡ì´ ì—†ìŠµë‹ˆë‹¤.");
+						System.out.println("¾à ¹øÈ£ "+m_num+" (À¸)·Î Á¶È¸µÈ ÁÖ¹®±â·ÏÀÌ ¾ø½À´Ï´Ù.");
 					}
 					System.out.println("\n");
 					//stmt.close(); 
@@ -235,7 +234,7 @@ public class MedicineQuery {
 				}
 				break;
 			default:
-				System.out.println("* ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.");
+				System.out.println("* Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.");
 				break;
 		}
 		
@@ -243,25 +242,25 @@ public class MedicineQuery {
 		
 	}
 	
-	// ì•½ ì£¼ë¬¸í•˜ê¸°
+	// ¾à ÁÖ¹®ÇÏ±â
 	public static void medicine_order(Connection conn, Statement stmt, String clientID) {
 		System.out.println("\n----------------------------------");
-		System.out.println("-------- [ ì•½ ì£¼ë¬¸ ë° ì£¼ë¬¸ì·¨ì†Œ ] --------");
-		System.out.println("1. ì•½ ë²ˆí˜¸ ì°¾ê¸°");
-		System.out.println("2. ì•½ ì£¼ë¬¸ ê¸°ë¡ ì¡°íšŒ");
-		System.out.println("3. ì•½ ì£¼ë¬¸");
-		System.out.println("4. ì•½ ì£¼ë¬¸ ì·¨ì†Œ");
+		System.out.println("-------- [ ¾à ÁÖ¹® ¹× ÁÖ¹®Ãë¼Ò ] --------");
+		System.out.println("1. ¾à ¹øÈ£ Ã£±â");
+		System.out.println("2. ¾à ÁÖ¹® ±â·Ï Á¶È¸");
+		System.out.println("3. ¾à ÁÖ¹®");
+		System.out.println("4. ¾à ÁÖ¹® Ãë¼Ò");
 		ResultSet rs = null;
 		
-		System.out.print("* ë²ˆí˜¸ ì…ë ¥: ");
+		System.out.print("* ¹øÈ£ ÀÔ·Â: ");
 		Scanner sc = new Scanner(System.in);
 		int i = sc.nextInt();
 		sc.nextLine();
 		
 		switch (i) {
-			case 1: // ìƒˆë¡œìš´ ì£¼ë¬¸ì´ ìƒê¸°ëŠ” ê²½ìš°
-				// ì£¼ë¬¸í•˜ê³ ì í•˜ëŠ” ì•½ ë²ˆí˜¸ ì¡°íšŒ
-				System.out.print("\n* ì•½ ì´ë¦„ ì…ë ¥: ");
+			case 1: // »õ·Î¿î ÁÖ¹®ÀÌ »ı±â´Â °æ¿ì
+				// ÁÖ¹®ÇÏ°íÀÚ ÇÏ´Â ¾à ¹øÈ£ Á¶È¸
+				System.out.print("\n* ¾à ÀÌ¸§ ÀÔ·Â: ");
 				String m_name = sc.nextLine();
 				try {
 					//stmt = conn.createStatement();
@@ -271,8 +270,8 @@ public class MedicineQuery {
 							+ " ORDER BY M_number";
 					
 					rs = stmt.executeQuery(sql);
-					System.out.println("\n<< ì•½ ê²€ìƒ‰ê²°ê³¼ >>");
-					System.out.println("ì•½ ë²ˆí˜¸ | ì•½ ì´ë¦„ ");
+					System.out.println("\n<< ¾à °Ë»ö°á°ú >>");
+					System.out.println("¾à ¹øÈ£ | ¾à ÀÌ¸§ ");
 					System.out.println("----------------");
 					int cnt = 0;
 					while(rs.next()) {
@@ -283,7 +282,7 @@ public class MedicineQuery {
 						cnt++;
 					}
 					if (cnt == 0) {
-						System.out.println("ì•½ ì´ë¦„ "+m_name+" (ìœ¼)ë¡œ ì¡°íšŒëœ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.");
+						System.out.println("¾à ÀÌ¸§ "+m_name+" (À¸)·Î Á¶È¸µÈ °á°ú°¡ ¾ø½À´Ï´Ù.");
 					}
 					System.out.println("\n");
 					//stmt.close(); 
@@ -295,10 +294,10 @@ public class MedicineQuery {
 				
 				break;
 			case 2:
-				// ì•½ ì£¼ë¬¸ê¸°ë¡ ì¡°íšŒ
-				System.out.print("\n* ì£¼ë¬¸ ë²ˆí˜¸: ");
+				// ¾à ÁÖ¹®±â·Ï Á¶È¸
+				System.out.print("\n* ÁÖ¹® ¹øÈ£: ");
 				String o_num3 = sc.nextLine();
-				System.out.print("* ì•½ì‚¬ ID: ");
+				System.out.print("* ¾à»ç ID: ");
 				String chemistID3 = sc.nextLine();
 
 				try {
@@ -307,11 +306,12 @@ public class MedicineQuery {
 					String sql = "SELECT Order_num, M_number, Count, Order_date, Prescription, Chemist_ID"
 							+ " FROM M_ORDER NATURAL JOIN CONTAIN "
 									+ " WHERE Order_num = "+o_num3
-									+ " AND Chemist_ID = "+chemistID3;
+									+ " AND Chemist_ID = "+chemistID3
+									+ " AND Client_ID = '"+clientID+"'";
 					
 					rs = stmt.executeQuery(sql);
-					System.out.println("\n<< ì£¼ë¬¸ê¸°ë¡ ê²€ìƒ‰ê²°ê³¼ >>");
-					System.out.println("ì£¼ë¬¸ ë²ˆí˜¸ | ì•½ ë²ˆí˜¸ | ìˆ˜ëŸ‰ | ì£¼ë¬¸ ë‚ ì§œ | ì²˜ë°©ì „ ìœ ë¬´ | ì•½ì‚¬ID ");
+					System.out.println("\n<< ÁÖ¹®±â·Ï °Ë»ö°á°ú >>");
+					System.out.println("ÁÖ¹® ¹øÈ£ | ¾à ¹øÈ£ | ¼ö·® | ÁÖ¹® ³¯Â¥ | Ã³¹æÀü À¯¹« | ¾à»çID ");
 					System.out.println("-----------------------------------------------------");
 					int cnt = 0;
 					while(rs.next()) {
@@ -333,39 +333,39 @@ public class MedicineQuery {
 						cnt++;
 					}
 					if (cnt == 0) {
-						System.out.println("* í•´ë‹¹ ì¡°ê±´ì˜ ì£¼ë¬¸ ê¸°ë¡ì´ ì—†ìŠµë‹ˆë‹¤.");
+						System.out.println("* ÇØ´ç Á¶°ÇÀÇ ÁÖ¹® ±â·ÏÀÌ ¾ø½À´Ï´Ù.");
 					}
 					//stmt.close(); 
 					rs.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					System.out.println("* í•´ë‹¹ ì¡°ê±´ì˜ ì£¼ë¬¸ ê¸°ë¡ì´ ì—†ìŠµë‹ˆë‹¤.");
+					System.out.println("* ÇØ´ç Á¶°ÇÀÇ ÁÖ¹® ±â·ÏÀÌ ¾ø½À´Ï´Ù.");
 					e.printStackTrace();
 				}
 				break;
 			case 3:
-				// ì•½ ì£¼ë¬¸í•˜ê¸°
+				// ¾à ÁÖ¹®ÇÏ±â
 				String o_prescription = "";
-				System.out.print("\n* ì•½ ë²ˆí˜¸: ");
+				System.out.print("\n* ¾à ¹øÈ£: ");
 				String m_num = sc.nextLine();
-				System.out.print("* ìˆ˜ëŸ‰: ");
+				System.out.print("* ¼ö·®: ");
 				String m_count = sc.nextLine();
-				System.out.print("* ì£¼ë¬¸ ë‚ ì§œ (yyyy-mm-dd): ");
+				System.out.print("* ÁÖ¹® ³¯Â¥ (yyyy-mm-dd): ");
 				String o_date = sc.nextLine();
-				System.out.print("* ì²˜ë°©ì „ ìœ ë¬´(o/x): ");
+				System.out.print("* Ã³¹æÀü À¯¹«(o/x): ");
 				String p = sc.nextLine();
 				if (p.equals("o") || p.equals("O"))
 					o_prescription = "1";
 				else if (p.equals("x") || p.equals("X"))
 					o_prescription = "0";
 				else {
-					System.out.println("* ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.");
+					System.out.println("* Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.");
 					break;
 				}
-				System.out.print("* ì£¼ë¬¸ë°›ì€ ì•½ì‚¬ ID: ");
+				System.out.print("* ÁÖ¹®¹ŞÀº ¾à»ç ID: ");
 				String chemistID = sc.nextLine();
 				
-				System.out.print("* ì£¼ë¬¸ ë²ˆí˜¸: ");
+				System.out.print("* ÁÖ¹® ¹øÈ£: ");
 				String o_num = sc.nextLine();
 				
 				try {
@@ -385,21 +385,21 @@ public class MedicineQuery {
 					rs = stmt.executeQuery(sql);
 					
 					
-					System.out.println("\n* ì£¼ë¬¸ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.");
+					System.out.println("\n* ÁÖ¹®ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.");
 					System.out.println("\n");
 					//stmt.close(); 
 					rs.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					System.out.println("* ì˜ëª»ëœ ì£¼ë¬¸ì…ë‹ˆë‹¤.");
+					System.out.println("* Àß¸øµÈ ÁÖ¹®ÀÔ´Ï´Ù.");
 					e.printStackTrace();
 				}
 				break;
 			case 4:
-				// ì•½ ì£¼ë¬¸ì·¨ì†Œ
-				System.out.print("\n* ì£¼ë¬¸ ë²ˆí˜¸: ");
+				// ¾à ÁÖ¹®Ãë¼Ò
+				System.out.print("\n* ÁÖ¹® ¹øÈ£: ");
 				String o_num2 = sc.nextLine();
-				System.out.print("* ì•½ì‚¬ ID: ");
+				System.out.print("* ¾à»ç ID: ");
 				String chemistID2 = sc.nextLine();
 
 				try {
@@ -412,75 +412,79 @@ public class MedicineQuery {
 					
 					rs = stmt.executeQuery(sql);
 					
-					System.out.println("\n* ì£¼ë¬¸ì´ ì·¨ì†Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+					System.out.println("\n* ÁÖ¹®ÀÌ Ãë¼ÒµÇ¾ú½À´Ï´Ù.");
 					System.out.println("\n");
 					//stmt.close(); 
 					rs.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					System.out.println("* í•´ë‹¹ ì¡°ê±´ì˜ ì£¼ë¬¸ ê¸°ë¡ì´ ì—†ìŠµë‹ˆë‹¤.");
+					System.out.println("* ÇØ´ç Á¶°ÇÀÇ ÁÖ¹® ±â·ÏÀÌ ¾ø½À´Ï´Ù.");
 					e.printStackTrace();
 				}
 				break;
 			default:
-				System.out.println("* ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.");
+				System.out.println("* Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.");
 				break;
 		}
 		
 	}
 
-	// ì•½ ì°¾ê¸°
-	public static void search_medicine(Connection conn, Statement stmt) {//ì•½ì„ ì°¾ëŠ” í•¨ìˆ˜
+	// ¾à Ã£±â
+	public static void search_medicine(Connection conn, Statement stmt) {//¾àÀ» Ã£´Â ÇÔ¼ö
 		ResultSet rs = null;
 		Scanner sc = new Scanner(System.in);
 		String condition, m_name, m_type = "";
 		int price, m_type_num;
 		System.out.println("\n----------------------------------");
-		System.out.println("-------- [ ì¦ìƒì— ë”°ë¥¸ ì•½ ì¡°íšŒ ] --------");
-		System.out.println("ì¦ìƒì„ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
+		System.out.println("-------- [ Áõ»ó¿¡ µû¸¥ ¾à Á¶È¸ ] --------");
+		System.out.println("* Áõ»óÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
 		condition = sc.nextLine();
 
-		System.out.println("ê°€ê²©ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”. ì…ë ¥í•˜ì‹  ê°€ê²©ë³´ë‹¤ ë‚®ì€ ê°€ê²©ì„ ê°€ì§„ ì•½ë“¤ì´ í‘œì‹œ ë©ë‹ˆë‹¤.");
+		System.out.println("* °¡°İÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä. ÀÔ·ÂÇÏ½Å °¡°İº¸´Ù ³·Àº °¡°İÀ» °¡Áø ¾àµéÀÌ Ç¥½Ã µË´Ï´Ù.");
 		price = sc.nextInt();
 
-		System.out.println("ì•½ ì´ë¦„ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
+		System.out.println("* ¾à ÀÌ¸§À» ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
 		m_name = sc.nextLine();
 
-		System.out.println("íƒ€ì…ì„ ì„ íƒí•´ ì£¼ì„¸ìš”.");
-		System.out.println("1. ì•Œì•½ 2. ìº¡ìŠ 3. ë³‘");
+		System.out.println("* Å¸ÀÔÀ» ¼±ÅÃÇØ ÁÖ¼¼¿ä.");
+		System.out.println("1. ¾Ë¾à 2. Ä¸½¶ 3. º´");
 		m_type_num = sc.nextInt();
 
 		if (m_type_num == 1) {
-			m_type = "ì•Œì•½";
+			m_type = "¾Ë¾à";
 		} else if (m_type_num == 2) {
-			m_type = "ìº¡ìŠ";
+			m_type = "Ä¸½¶";
 		} else if (m_type_num == 3) {
-			m_type = "ë³‘";
+			m_type = "º´";
 		}
 		try {
 			// Q1: Complete your query.
 			stmt = conn.createStatement();
-			String sql = "select name, price, drug_type, dosing_interval, info "//ì¿¼ë¦¬ë¬¸
+			String sql = "select name, price, drug_type, dosing_interval, info "//Äõ¸®¹®
 					+ "from medicine "
 					+ "where price<=" + price + " and name like'%"
 					+ m_name.replace("\n", "") + "%' and drug_type='"
 					+ m_type.replace("\n", "") + "' and info like '%" + condition.replace("\n", "") + "%'";
-			rs = stmt.executeQuery(sql);//sql ì ìš©
+			rs = stmt.executeQuery(sql);//sql Àû¿ë
 			ResultSetMetaData rsmd = rs.getMetaData();
-			System.out.println("<< query 1 result >>");
+			//System.out.println("<< query 1 result >>");
+			
 			int cnt = rsmd.getColumnCount();
 			for (int i = 1; i <= cnt; i++) {
+				/*
 				if (i != cnt)
-					System.out.print(rsmd.getColumnName(i) + " | ");//ì»¬ëŸ¼ëª… ì¶œë ¥
+					System.out.print(rsmd.getColumnName(i) + " | ");//ÄÃ·³¸í Ãâ·Â
 				else
-					System.out.print(rsmd.getColumnName(i));//ì»¬ëŸ¼ëª… ì¶œë ¥
+					System.out.print(rsmd.getColumnName(i));//ÄÃ·³¸í Ãâ·Â
+					*/
 			}
-			System.out.println("\n<< ì•½ ê²€ìƒ‰ ê²°ê³¼ >>");
-			System.out.println("ì•½ ì´ë¦„ | ê°€ê²© | ì•½ íƒ€ì… | ë³µìš© ìš©ëŸ‰ | ì£¼ì˜ ì‚¬í•­");
+			
+			System.out.println("\n<< ¾à °Ë»ö °á°ú >>");
+			System.out.println("¾à ÀÌ¸§ | °¡°İ | ¾à Å¸ÀÔ | º¹¿ë ¿ë·® | ÁÖÀÇ »çÇ×");
+			System.out.println("-------------------------------");
 
-			System.out.println();
-			//selectê²°ê³¼ ì¶œë ¥
-			while (rs.next()) {//íŠœí”Œ ë‚´ìš© ì¶œë ¥
+			//select°á°ú Ãâ·Â
+			while (rs.next()) {//Æ©ÇÃ ³»¿ë Ãâ·Â
 				System.out.print(rs.getString(1) + " | ");
 				System.out.print(rs.getString(2) + " | ");
 				System.out.print(rs.getString(3) + " | ");
@@ -489,7 +493,7 @@ public class MedicineQuery {
 				// Fill out your code		
 			}
 			if(cnt==0)
-				System.out.println("í•´ë‹¹í•˜ëŠ” ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.");
+				System.out.println("* ÇØ´çÇÏ´Â °Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.");
 			rs.close();
 
 			System.out.println();
@@ -501,20 +505,20 @@ public class MedicineQuery {
 		}
 	}
 	
-	//===============================ì•½êµ­ ì°¾ê¸°================================
+	//===============================¾à±¹ Ã£±â================================
 	public static void search_parmacy(Connection conn, Statement stmt) {
 		ResultSet rs = null;
 		Scanner sc = new Scanner(System.in);
 		String m_name, address;
 		System.out.println("\n----------------------------------");
-		System.out.println("-------- [ ì•½êµ­ ì¡°íšŒ ] --------");
-		System.out.println("í•„ìš”í•˜ì‹  ì•½ ì´ë¦„ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”. í•´ë‹¹ ì•½ì´ ìˆëŠ” ì•½êµ­ì„ ì°¾ì•„ë“œë¦½ë‹ˆë‹¤.");
+		System.out.println("-------- [ ¾à±¹ Á¶È¸ ] --------");
+		System.out.println("* ÇÊ¿äÇÏ½Å ¾à ÀÌ¸§À» ÀÔ·ÂÇØ ÁÖ¼¼¿ä. ÇØ´ç ¾àÀÌ ÀÖ´Â ¾à±¹À» Ã£¾Æµå¸³´Ï´Ù.");
 		m_name = sc.nextLine();
-		System.out.println("ì•½êµ­ì˜ ì£¼ì†Œë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
+		System.out.println("* ¾à±¹ÀÇ ÁÖ¼Ò¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
 		address = sc.nextLine();
 		try {
 			// Q1: Complete your query.
-			String sql = "select distinct p.name, p.Address "//ì¿¼ë¦¬ë¬¸ ì…ë ¥
+			String sql = "select distinct p.name, p.Address "//Äõ¸®¹® ÀÔ·Â
 					+ "from pharmacy p inner join m_store s "
 					+ "on p.pharmacy_num=s.pharmacy_num "
 					+ "inner join medicine m "
@@ -525,18 +529,21 @@ public class MedicineQuery {
 			ResultSetMetaData rsmd = rs.getMetaData();
 			//System.out.println("<< query 2 result >>");
 			int cnt = rsmd.getColumnCount();
-			//ì»¬ëŸ¼ ë„¤ì„ ì¶œë ¥
+			//ÄÃ·³ ³×ÀÓ Ãâ·Â
 			for (int i = 1; i <= cnt; i++) {
+				/*
 				if (i != cnt)
 					System.out.print(rsmd.getColumnName(i) + " | ");
 				else
 					System.out.print(rsmd.getColumnName(i));
+					*/
 			}
 
-			System.out.println("\n<< ì•½êµ­ ê²€ìƒ‰ ê²°ê³¼ >>");
-			System.out.println("ì•½êµ­ ì´ë¦„ | ì•½êµ­ ì£¼ì†Œ");
-			System.out.println();
-			//íŠœí”Œ ë‚´ìš© ì¶œë ¥
+			System.out.println("\n<< ¾à±¹ °Ë»ö °á°ú >>");
+			System.out.println("¾à±¹ ÀÌ¸§ | ¾à±¹ ÁÖ¼Ò");
+			System.out.println("-------------------------------");
+
+			//Æ©ÇÃ ³»¿ë Ãâ·Â
 			while (rs.next()) {
 				System.out.print(rs.getString(1) + " | ");
 				System.out.println(rs.getString(2));
@@ -544,7 +551,7 @@ public class MedicineQuery {
 			}
 			rs.close();
 			if(cnt==0)
-				System.out.println("í•´ë‹¹í•˜ëŠ” ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.");
+				System.out.println("* ÇØ´çÇÏ´Â °Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.");
 			System.out.println();
 
 			rs.close();
@@ -555,15 +562,15 @@ public class MedicineQuery {
 
 	}
 
-	//====================ì¬ê³  ì¡°íšŒ & ìˆ˜ëŸ‰ ë³€ê²½, ìˆ˜ëŸ‰ì´ 0ì¸ ì•½ë“¤ ì‚­ì œ========================
+	//====================Àç°í Á¶È¸ & ¼ö·® º¯°æ, ¼ö·®ÀÌ 0ÀÎ ¾àµé »èÁ¦========================
 	public static void medicen_stock(Connection conn, Statement stmt, String chemistID) {
 		//default = input is parmercy's ID
 		Scanner sc = new Scanner(System.in);
 		String p_num = "", m_num = "";
-		int menu = 0, checkpoint = 0;//checkpointëŠ” ì¿¼ë¦¬ ì¶œë ¥ ë‚´ìš©ì´ ìˆëŠ”ì§€ í™•ì¸í•˜ê³ , ì¶”í›„ insertì™€ updateë¥¼ ê²°ì •í•œë‹¤.
-		System.out.println("-------< ë‚¨ì€ ì•½ì˜ ìˆ˜ëŸ‰ ì¡°íšŒ, ìˆ˜ì • >-----------");
+		int menu = 0, checkpoint = 0;//checkpoint´Â Äõ¸® Ãâ·Â ³»¿ëÀÌ ÀÖ´ÂÁö È®ÀÎÇÏ°í, ÃßÈÄ insert¿Í update¸¦ °áÁ¤ÇÑ´Ù.
+		System.out.println("-------< ³²Àº ¾àÀÇ ¼ö·® Á¶È¸, ¼öÁ¤ >-----------");
 
-		System.out.println("ì°¾ìœ¼ì‹¤ ì•½ì˜ ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”");
+		System.out.println("* Ã£À¸½Ç ¾àÀÇ ¹øÈ£¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
 		int medicine_num = sc.nextInt();
 		ResultSet rs = null;
 		try {
@@ -574,20 +581,21 @@ public class MedicineQuery {
 					+ "where c.ID = " + chemistID + " and m.m_number = " + medicine_num;
 			rs = stmt.executeQuery(sql);
 			ResultSetMetaData rsmd = rs.getMetaData();
-			System.out.println("<< query ì¡°í¬ result >>");
-			System.out.println("ì•½ ë²ˆí˜¸ | ì•½ ìˆ˜ëŸ‰");
+			//System.out.println("<< query Á¶Èñ result >>");
+			System.out.println("¾à ¹øÈ£ | ¾à ¼ö·®");
+			System.out.println("-------------------------------");
 			int cnt = rsmd.getColumnCount();
 			while (rs.next()) {
 
 				System.out.print(rs.getString(1) + " | ");
-				m_num = rs.getString(1);//ì•½ ë²ˆí˜¸ ë°›ê¸° ìœ„í•´ ì•½ ì—…ë°ì´íŠ¸ì— í•„ìš”
+				m_num = rs.getString(1);//¾à ¹øÈ£ ¹Ş±â À§ÇØ ¾à ¾÷µ¥ÀÌÆ®¿¡ ÇÊ¿ä
 				System.out.println(rs.getString(2));
-				p_num = rs.getString(3);//ì•½êµ­ ë²ˆí˜¸ ë°›ê¸° ìœ„í•´ì„œ. ë‚˜ì¤‘ì— ì•½ ì¶”ê°€ or ì—…ë°ì´íŠ¸ì— í•„ìš”
+				p_num = rs.getString(3);//¾à±¹ ¹øÈ£ ¹Ş±â À§ÇØ¼­. ³ªÁß¿¡ ¾à Ãß°¡ or ¾÷µ¥ÀÌÆ®¿¡ ÇÊ¿ä
 				checkpoint = 1;
 				// Fill out your code		
 			}
-			if (cnt == 0) {
-				System.out.println("ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.");
+			if (checkpoint == 0) {
+				System.out.println("* °Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.");
 			}
 			rs.close();
 			System.out.println();
@@ -598,13 +606,13 @@ public class MedicineQuery {
 		}
 
 		int insert_check_num = 0;
-		if (checkpoint == 0) {//ì¿¼ë¦¬ ì¶œë ¥ ê²°ê³¼(ì¡°íšŒ ê²°ê³¼)ê°€ ì•„ë¬´ê²ƒë„ ì—†ë‹¤ë©´, 
-			System.out.println("í•´ë‹¹ ì•½ì„ ì¶”ê°€ í•˜ì‹œê² ìŠµë‹ˆê¹Œ? 1. ë„¤ 2. ì•„ë‹ˆìš”");
+		if (checkpoint == 0) {//Äõ¸® Ãâ·Â °á°ú(Á¶È¸ °á°ú)°¡ ¾Æ¹«°Íµµ ¾ø´Ù¸é, 
+			System.out.println("* ÇØ´ç ¾àÀ» Ãß°¡ ÇÏ½Ã°Ú½À´Ï±î? 1. ³× 2. ¾Æ´Ï¿ä");
 			insert_check_num = sc.nextInt();
 			if (insert_check_num == 1)
-				menu = 1;//insertë¡œ ë³´ë‚´ì•¼ í•¨
-		} else {//ì¿¼ë¦¬ ì¶œë ¥ ê²°ê³¼ê°€ ì¡´ì¬ í•œë‹¤ë©´,
-			System.out.println("ì•½ì˜ ìˆ˜ëŸ‰ì„ ë³€ê²½ í•˜ì‹œê² ìŠµë‹ˆê¹Œ? 1. ë„¤ 2. ì•„ë‹ˆìš”");
+				menu = 1;//insert·Î º¸³»¾ß ÇÔ
+		} else {//Äõ¸® Ãâ·Â °á°ú°¡ Á¸Àç ÇÑ´Ù¸é,
+			System.out.println("* ¾àÀÇ ¼ö·®À» º¯°æ ÇÏ½Ã°Ú½À´Ï±î? 1. ³× 2. ¾Æ´Ï¿ä");
 			int update_check_menu = sc.nextInt();
 			if (update_check_menu == 1) {
 				menu = 2;
@@ -613,25 +621,25 @@ public class MedicineQuery {
 		}
 
 		System.out.println();
-		if (menu == 1) {//ì•„ë¬´ê²ƒë„ ì—†ì„ ë•Œ ì¸ì„œíŠ¸
+		if (menu == 1) {//¾Æ¹«°Íµµ ¾øÀ» ¶§ ÀÎ¼­Æ®
 			m_insert(conn, stmt, p_num);
 		} else if (menu == 2) {
 			m_update(conn, stmt, p_num, m_num);
 		}
-		m_delete(conn, stmt);//stockì´ 0ì¸ ê²ƒë“¤ ëª¨ë‘ ì‚­ì œ => ë§¤ë²ˆ ëŒ ë•Œë§ˆë‹¤ ìˆ˜ëŸ‰ì´ 0ì¸ ì•½ì„ ì‚­ì œí•  í•„ìš”ê°€ ìˆìŒ
+		m_delete(conn, stmt);//stockÀÌ 0ÀÎ °Íµé ¸ğµÎ »èÁ¦ => ¸Å¹ø µ¹ ¶§¸¶´Ù ¼ö·®ÀÌ 0ÀÎ ¾àÀ» »èÁ¦ÇÒ ÇÊ¿ä°¡ ÀÖÀ½
 
 	}
 
-	public static void m_insert(Connection conn, Statement stmt, String p_num) {//p_numì€ insertì— í•„ìš”í•œ ì•½êµ­ ë²ˆí˜¸
+	public static void m_insert(Connection conn, Statement stmt, String p_num) {//p_numÀº insert¿¡ ÇÊ¿äÇÑ ¾à±¹ ¹øÈ£
 		ResultSet rs = null;
 		Scanner sc = new Scanner(System.in);
 		int m_number, m_stock;
-		System.out.println("ì•½ ì¶”ê°€ë¥¼ ì„ íƒí•˜ì…¨ìŠµë‹ˆë‹¤.");
-		System.out.println("ì¶”ê°€í•˜ì‹¤ ì•½ì˜ ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
-		//ì•½ ë²ˆí˜¸ ì¸í’‹
+		System.out.println("* ¾à Ãß°¡¸¦ ¼±ÅÃÇÏ¼Ì½À´Ï´Ù.");
+		System.out.println("* Ãß°¡ÇÏ½Ç ¾àÀÇ ¹øÈ£¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+		//¾à ¹øÈ£ ÀÎÇ²
 		m_number = sc.nextInt();
-		System.out.println("ì¶”ê°€ë˜ëŠ” ì•½ì˜ ìˆ˜ëŸ‰ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
-		//ì•½ ìˆ˜ëŸ‰ ì¸í’‹
+		System.out.println("* Ãß°¡µÇ´Â ¾àÀÇ ¼ö·®¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+		//¾à ¼ö·® ÀÎÇ²
 		m_stock = sc.nextInt();
 		try {
 			String sql = "INSERT INTO M_STORE VALUES (" + m_number + "," + p_num + "," + m_stock + ")";
@@ -648,11 +656,11 @@ public class MedicineQuery {
 
 	}
 
-	public static void m_update(Connection conn, Statement stmt, String p_num, String m_num) {//p_num, m_numì€ ì—…ë°ì´íŠ¸ì— í•„ìš”í•œ êµ¬ë¬¸
+	public static void m_update(Connection conn, Statement stmt, String p_num, String m_num) {//p_num, m_numÀº ¾÷µ¥ÀÌÆ®¿¡ ÇÊ¿äÇÑ ±¸¹®
 		//delete qury
 		ResultSet rs = null;
 		Scanner sc = new Scanner(System.in);
-		System.out.println("ë³€ê²½í•˜ì‹¤ ìˆ˜ëŸ‰ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”");
+		System.out.println("º¯°æÇÏ½Ç ¼ö·®À» ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
 		int stock = sc.nextInt();
 		try {
 			// Q1: Complete your query.
@@ -669,7 +677,7 @@ public class MedicineQuery {
 		}
 	}
 
-	public static void m_delete(Connection conn, Statement stmt) {//ìŠ¤í†¡ 0ì¸ M_store ì‚­ì œ
+	public static void m_delete(Connection conn, Statement stmt) {//½ºÅå 0ÀÎ M_store »èÁ¦
 		//update qury
 		ResultSet rs = null;
 		try {
@@ -688,19 +696,19 @@ public class MedicineQuery {
 
 	}
 	
-	//ë³‘ë ¥ ê¸°ë¡ ì¶”ê°€
+	//º´·Â ±â·Ï Ãß°¡
 	public static void case_insert(Connection conn, Statement stmt, String Id){
 		System.out.println("\n----------------------------------");
-		System.out.println("-------- [ ë³‘ë ¥ ê¸°ë¡ ì¶”ê°€ ] --------");
+		System.out.println("-------- [ º´·Â ±â·Ï Ãß°¡ ] --------");
 		Scanner input = new Scanner(System.in);
 		int i = 0;
 		String compare1 = "";
 		String compare2 = "";
-		System.out.println("1.ì²˜ë°©ë°›ì€ ë‚ ì§œë¥¼ ì…ë ¥í•´ ì£¼ì‹­ì‹œì˜¤.(ex : yyyy-mm-dd)");
+		System.out.println("1.Ã³¹æ¹ŞÀº ³¯Â¥¸¦ ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À.(ex : yyyy-mm-dd)");
 		String date = input.next();
-		System.out.println("2.ì²˜ë°©ë°›ì€ ì•½ì„ ì…ë ¥í•´ ì£¼ì‹­ì‹œì˜¤.");
+		System.out.println("2.Ã³¹æ¹ŞÀº ¾àÀ» ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À.");
 		String medicine = input.next();
-		/*System.out.println("3.IDë¥¼ ì…ë ¥í•´ì£¼ì‹­ì‹œì˜¤.");
+		/*System.out.println("3.ID¸¦ ÀÔ·ÂÇØÁÖ½Ê½Ã¿À.");
 		String Id = input.next();*/
 		ResultSet rs = null;
 	
@@ -710,7 +718,7 @@ public class MedicineQuery {
 				test.setLenient(false);
 				test.parse(date);
 				}catch(ParseException e){
-					System.out.println("ì˜ëª»ëœ ë‚ ì§œ í˜•ì‹ì…ë‹ˆë‹¤.");
+					System.out.println("* Àß¸øµÈ ³¯Â¥ Çü½ÄÀÔ´Ï´Ù.");
 				}
 			String sql ="select name from medicine";
 			rs = stmt.executeQuery(sql);
@@ -722,7 +730,7 @@ public class MedicineQuery {
 				}
 			}
 			if(i == 0) {
-				System.out.println("ë°ì´í„° ë² ì´ìŠ¤ì— ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì•½ì…ë‹ˆë‹¤");
+				System.out.println("µ¥ÀÌÅÍ º£ÀÌ½º¿¡ Á¸ÀçÇÏÁö ¾Ê´Â ¾àÀÔ´Ï´Ù");
 			}
 			
 			else{
@@ -735,8 +743,8 @@ public class MedicineQuery {
 			sql = "Insert INTO CASE_HISTORY VALUES(" + (count+1) + ", TO_DATE('" + date + "', 'yyyy-mm-dd'), '" + medicine +"','" + Id +"')";
 			int res = stmt.executeUpdate(sql);
 			if(res == 1)
-				System.out.println("ë³‘ë ¥ ê¸°ë¡ì„ ì„±ê³µì ìœ¼ë¡œ ì¶”ê°€í•˜ì˜€ìŠµë‹ˆë‹¤.");
-				//conn.commit(); í…ŒìŠ¤íŠ¸ë§ˆë‹¤ ì»¤ë°‹í•˜ë©´ ë¶ˆí¸í•˜ë‹ˆê¹Œ.
+				System.out.println("º´·Â ±â·ÏÀ» ¼º°øÀûÀ¸·Î Ãß°¡ÇÏ¿´½À´Ï´Ù.");
+				//conn.commit(); ÀÚµ¿Ä¿¹Ô ¾Æ´Ï¸é ÁÖ¼® ÇØÁ¦
 			}
 			rs.close();
 	}catch(SQLException ex2) {
@@ -749,10 +757,10 @@ public class MedicineQuery {
 		Scanner input = new Scanner(System.in);
 		int i = 1;
 		System.out.println("\n--------------------------------------------------------");
-		System.out.println("------------------ [ ì¦ìƒì„ ì•“ëŠ” ê³ ê° ì¡°íšŒ ] ------------------");
-		System.out.println("ì¡°íšŒë¥¼ ì›í•˜ëŠ” ê³ ê°ì˜ ì¦ìƒì„ ì•„ë˜ì—ì„œ í•˜ë‚˜ë¥¼ ì„ íƒí•˜ì—¬ í•œê¸€ë¡œ ì…ë ¥í•´ ì£¼ì‹­ì‹œì˜¤.");
+		System.out.println("------------------ [ Áõ»óÀ» ¾Î´Â °í°´ Á¶È¸ ] ------------------");
+		System.out.println("* Á¶È¸¸¦ ¿øÇÏ´Â °í°´ÀÇ Áõ»óÀ» ¾Æ·¡¿¡¼­ ÇÏ³ª¸¦ ¼±ÅÃÇÏ¿© ÇÑ±Û·Î ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À.");
 		try {
-			String sql = "select Name from SYMPTOM where Condition = 'í•˜'";
+			String sql = "select Name from SYMPTOM where Condition = 'ÇÏ'";
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 				String Symptom_Name = rs.getString(1);
@@ -770,7 +778,7 @@ public class MedicineQuery {
 				}
 			}
 			if(i == 0) {
-				System.out.println("ì¦ìƒì„ ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
+				System.out.println("* Áõ»óÀ» Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
 			}
 			else {
 			sql = "select * from CLIENT, HAVE where Symptom_num in (select Symptom_num from Symptom where name ='" + Symptom +"') and ID = Client_ID";
@@ -782,13 +790,15 @@ public class MedicineQuery {
 				String Id = rs.getString(1);
 				String Name = rs.getString(2);
 				String Sex = rs.getString(3);
-				String Birth = rs.getString(4);
+				SimpleDateFormat checkDate = new SimpleDateFormat("yyyy-MM-dd");
+				Date date = rs.getDate(4);
+				String Birth = checkDate.format(date);
 				String C_address = rs.getString(5);
 				String Phone_num = rs.getString(6);
 				System.out.println(Id + " | " + Name+ " | " + Sex+ " | " + Birth+ " | " + C_address+ " | " + Phone_num);
 			}
 			if(i == 0) {
-				System.out.println("ì¡°íšŒëœ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
+				System.out.println("* Á¶È¸µÈ Á¤º¸°¡ ¾ø½À´Ï´Ù.\n");
 			}
 		}
 		rs.close();
@@ -802,37 +812,33 @@ public class MedicineQuery {
 	
 	public static void case_search(Connection conn, Statement stmt, String Id) {
 		ResultSet rs = null;
-		Scanner input = new Scanner(System.in);
-		System.out.println("1.ì´ë¦„ì„ ì…ë ¥í•´ ì£¼ì‹­ì‹œì˜¤.");
-		String Name = input.next();
-		System.out.println("2.ì „í™”ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì‹­ì‹œì˜¤.");
-		String Phone_num = input.next();
-		System.out.println("3.ìƒì¼ì„ ì…ë ¥í•´ ì£¼ì‹­ì‹œì˜¤.(ex : yyyy-mm-dd)");
-		String Birth = input.next();
+	
 		try {
 			//stmt = conn.createStatement();
-			String sql = "select Record_date, Record_name from Case_history, Client where Client.ID = Case_history.Client_ID and Client.Name ='"+ Name +"' and Client.Phone_num = '"+Phone_num+"' and Client.Birthday = '"+Birth+"'";
-			//String sql = "select Record_date, Record_name from Case_history, Client where Client.ID = Case_history.Client_ID and Client.ID = '"+Id+"'";
+			//String sql = "select Record_date, Record_name from Case_history, Client where Client.ID = Case_history.Client_ID and Client.Name ='"+ Name +"' and Client.Phone_num = '"+Phone_num+"' and Client.Birthday = '"+Birth+"'";
+			String sql = "select distinct Record_date, Record_name from Case_history, Client where Client.ID = Case_history.Client_ID and Client.ID = '"+Id+"'";
 			rs = stmt.executeQuery(sql);
-			System.out.println("---------------------------------------------------------------------------------");
+		
+			System.out.println("\n-------------------------------------");
+			System.out.println("-------- [ º´·Â ±â·Ï Á¶È¸ °á°ú ] --------\n");
 			int i=0;
 			while(rs.next()) {
-				String Record_date = rs.getString(1);
+				SimpleDateFormat checkDate = new SimpleDateFormat("yyyy-MM-dd");
+				Date date = rs.getDate(1);
+				String Record_date = checkDate.format(date);
 				String Record_name = rs.getString(2);
 				System.out.println(Record_date + " | " + Record_name);
 				i++;
 			}
 			if(i==0) {
-				System.out.println("ê¸°ë¡ì´ ì—†ìŠµë‹ˆë‹¤.");
+				System.out.println("* ±â·ÏÀÌ ¾ø½À´Ï´Ù.");
 			}
 			rs.close();
 		}catch(SQLException ex2) {
 			System.err.println("sql error = " + ex2.getMessage());
 		}
-		
+		System.out.println("");
 	}
-	
-	
 	
 	
 	public static void main(String[] args) {
@@ -864,9 +870,9 @@ public class MedicineQuery {
 		
 		// login
 		System.out.println("-------------------------------------");
-		System.out.println("1. ê³ ê° ë¡œê·¸ì¸");
-		System.out.println("2. ì•½ì‚¬ ë¡œê·¸ì¸");
-		System.out.print("* ë²ˆí˜¸ ì…ë ¥: ");
+		System.out.println("1. °í°´ ·Î±×ÀÎ");
+		System.out.println("2. ¾à»ç ·Î±×ÀÎ");
+		System.out.print("* ¹øÈ£ ÀÔ·Â: ");
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
 		sc.nextLine();
@@ -876,7 +882,7 @@ public class MedicineQuery {
 			System.out.print("client ID: ");
 			String clientID = sc.nextLine();
 			
-			// ì¡´ì¬í•˜ëŠ” client IDì¸ì§€ í™•ì¸
+			// Á¸ÀçÇÏ´Â client IDÀÎÁö È®ÀÎ
 			
 			try {
 				// Q1: Complete your query.
@@ -892,12 +898,12 @@ public class MedicineQuery {
 					cnt++;
 				}
 				if (cnt == 0) {
-					System.out.println("* ì¡´ì¬í•˜ì§€ ì•ŠëŠ” clientID ì…ë‹ˆë‹¤. ì…ë ¥ê°’: "+clientID);
-					System.out.println("* í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
+					System.out.println("* Á¸ÀçÇÏÁö ¾Ê´Â clientID ÀÔ´Ï´Ù. ÀÔ·Â°ª: "+clientID);
+					System.out.println("* ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.");
 					System.exit(1);
 				}
 				else {
-					System.out.println("* ë¡œê·¸ì¸ ì„±ê³µ");
+					System.out.println("* ·Î±×ÀÎ ¼º°ø");
 				}
 				System.out.println("\n");
 				//stmt.close(); 
@@ -910,22 +916,22 @@ public class MedicineQuery {
 			
 			while(true) {
 				System.out.println("-----------------------------------");
-				System.out.println("1. ì•½ ê²€ìƒ‰");
-				System.out.println("2. ì•½êµ­ ì´ë¦„ ê²€ìƒ‰");
-				System.out.println("3. ì•½êµ­ ìœ„ì¹˜ ê²€ìƒ‰");
-				System.out.println("4. ì£¼ë¬¸ ì¶”ê°€ ë° ì‚­ì œ");
-				System.out.println("5. ë³‘ë ¥ ê¸°ë¡ ì¡°íšŒ");
-				System.out.println("6. ë³‘ë ¥ê¸°ë¡ ì¶”ê°€");
-				System.out.println("7. ê°œì¸ì •ë³´ ìˆ˜ì •");
-				System.out.println("0. ì¢…ë£Œ\n");
+				System.out.println("1. ¾à °Ë»ö");
+				System.out.println("2. ¾à±¹ ÀÌ¸§ °Ë»ö");
+				System.out.println("3. ¾à±¹ À§Ä¡ °Ë»ö");
+				System.out.println("4. ÁÖ¹® Ãß°¡ ¹× »èÁ¦");
+				System.out.println("5. º´·Â ±â·Ï Ãß°¡");
+				System.out.println("6. º´·Â ±â·Ï Á¶È¸");
+				System.out.println("7. °³ÀÎÁ¤º¸ ¼öÁ¤");
+				System.out.println("0. Á¾·á\n");
 				
-				System.out.print("* ë²ˆí˜¸ ì…ë ¥: ");
+				System.out.print("* ¹øÈ£ ÀÔ·Â: ");
 				int i = sc.nextInt();
 				sc.nextLine();
 				System.out.println("");
 				switch (i) {
 				case 0:
-					System.out.println("* í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
+					System.out.println("* ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.");
 					System.exit(0);
 					break;
 				case 1:
@@ -950,7 +956,7 @@ public class MedicineQuery {
 					update_client_info(conn, stmt, clientID);
 					break;
 				default:
-					System.out.println("ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.");
+					System.out.println("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.");
 				}
 			}
 			
@@ -958,7 +964,7 @@ public class MedicineQuery {
 			System.out.print("chemist ID: ");
 			String chemistID = sc.nextLine();
 			
-			// ì¡´ì¬í•˜ëŠ” chemist IDì¸ì§€ í™•ì¸
+			// Á¸ÀçÇÏ´Â chemist IDÀÎÁö È®ÀÎ
 			try {
 				//stmt = conn.createStatement();
 				// Q1: Complete your query.
@@ -974,12 +980,12 @@ public class MedicineQuery {
 					cnt++;
 				}
 				if (cnt == 0) {
-					System.out.println("* ì¡´ì¬í•˜ì§€ ì•ŠëŠ” chemistID ì…ë‹ˆë‹¤. ì…ë ¥ê°’: "+chemistID);
-					System.out.println("* í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
+					System.out.println("* Á¸ÀçÇÏÁö ¾Ê´Â chemistID ÀÔ´Ï´Ù. ÀÔ·Â°ª: "+chemistID);
+					System.out.println("* ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.");
 					System.exit(1);
 				}
 				else {
-					System.out.println("* ë¡œê·¸ì¸ ì„±ê³µ");
+					System.out.println("* ·Î±×ÀÎ ¼º°ø");
 				}
 				System.out.println("\n");
 				//stmt.close(); 
@@ -992,18 +998,18 @@ public class MedicineQuery {
 			
 			while(true) {
 				System.out.println("-----------------------------------");
-				System.out.println("1. ê³ ê° ì¡°íšŒ");
-				System.out.println("2. ì•½ ì£¼ë¬¸ ê¸°ë¡ ì¡°íšŒ");
-				System.out.println("3. ì•½ ì¬ê³  ì¡°íšŒ");
-				System.out.println("0. ì¢…ë£Œ\n");
+				System.out.println("1. °í°´ Á¶È¸");
+				System.out.println("2. ¾à ÁÖ¹® ±â·Ï Á¶È¸");
+				System.out.println("3. ¾à Àç°í Á¶È¸");
+				System.out.println("0. Á¾·á\n");
 				
-				System.out.print("* ë²ˆí˜¸ ì…ë ¥: ");
+				System.out.print("* ¹øÈ£ ÀÔ·Â: ");
 				int i = sc.nextInt();
 				sc.nextLine();
 				System.out.println("");
 				switch (i) {
 				case 0:
-					System.out.println("* í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
+					System.out.println("* ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.");
 					System.exit(0);
 					break;
 				case 1:
@@ -1016,12 +1022,12 @@ public class MedicineQuery {
 					medicen_stock(conn, stmt, chemistID);
 					break;
 				default:
-					System.out.println("ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.");
+					System.out.println("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.");
 				}
 			}
 		default:
-			System.out.println("* ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.");
-			System.out.println("* í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
+			System.out.println("* Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.");
+			System.out.println("* ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.");
 			System.exit(1);
 		}
 		
