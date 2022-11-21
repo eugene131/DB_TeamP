@@ -1,0 +1,50 @@
+2) Team11-etr_mapping.txt
+
+** ER_Schema 수정사항 **
+MEDICINE: 
+Efficacy, Precaution, Dosing_method attribute를 약학정보원에서 크롤링 해오는 과정에서
+특정 문자열로 나누기 어렵다고 판단되어 새로운 Info attribute로 합침.
+
+STORE -> M_STORE:
+store가 oracle 예약어로 정의되어있어 명칭을 M_STORE로 변경.
+
+ORDER -> M_ORDER:
+order가 oracle 예약어로 정의되어있어 명칭을 M_ORDER로 변경.
+
+M_ORDER, CONTAIN 사이의 relationship:
+M_ORDER는 weak entity이므로 identifying relationship으로 변경.
+
+CLIENT:
+derived attribute(Age) 삭제
+*******************************
+
+** ER Schema가 어떻게 관계형 Schema로 매핑되었는지에 대한 설명 **
+1) MEDICINE, PHARMACY, M_STORE
+ 하나의 약국은 여러개의 약을 가지고 있고, 각 약들은 여러개의 약국에 저장되어 있으므로
+M:N 관계이다.
+ 따라서 M_STORE를 새로운 relation으로 만들었고, 
+M_STORE의 FK는 (M_number, Pharmacy_num) MEDICINE의 M_number, PHARMACY의 Pharmacy_num에서
+빌려왔다. 
+따라서 M_STORE의 PK는 {M_number, Pharmacy_num} 이다.
+
+2) PHARMACY, WORKS_FOR, CHEMIST
+하나의 약국에는 여러명의 약사가 일을 하고 있고, 각각의 약사들은 하나의 약국에서 일을 합니다. 그렇기에 이 둘의 관계는 1:N의 관계가 됩니다
+그렇기에 PHARMACY의 PK인 Pharmacy_num를 CHEMIST의 FK로 넘겨서 CHEMIST에 새로운 attribute, Pharmacy_num를 생성하여 관계를 나타내었습니다.
+
+3) CHEMIST, APPROVE, M_ORDER, REQUEST, CLIENT
+weak entity인 M_ORDER는 CHEMIST, CLIENT의 관계에 전체 참여하게 됩니다. 이를 표현하기 위해 M_ORDER를 하나의 relation으로 설정,
+CHEMIST, CLIENT 각각의 PK를 FK로 받아 Chemist_ID, Client_ID attribute를 생성, 기존에 있던 partial key Order_num까지 하여 
+세가지를 PK로 사용합니다.
+
+4) M_ORDER, CONTAIN, MEDICINE
+각 주문에 여러가지 약이 포함되고 각 약은 여러 주문에 포함됩니다. 이 관계를 M:N으로 설정, CONTAIN을 하나의 relation으로 설정하고 M_ORDER와
+MEDICINE의 PK를 FK로 받아와서 Order_num, Chemist_ID, Client_ID, M_number 4가지를 PK로 사용하게 하였습니다.
+
+5) CLIENT, CASE_HISTORY 
+weak entityCASE_HISTORY는 CLIENT와의 관계에 전체 참여하게 됩니다. 이를 표현하기 위해 CASE_HISTORY를 하나의 relation으로 설정, CASE_HISTORY
+가 가진 attribute 중 composite attribute인 Record는 나누어 단순한 attribute로 변환했습니다. 그 후 CLIENT의 PK인 ID를 FK로 받아와서 기존에 있던
+Case_num과 함께 사용하여 Client_ID, Case_num을 PK로 사용합니다.
+
+6) CLIENT, HAVE, SYMPTOM
+고객은 여러 증상을 앓고 있을 수 있고, 각 증상은 여러명의 고객에게서 나타날 수 있습니다. 이 관계를 M:N으로 확인, HAVE를 하나의 relation으로 만들었습니다.
+그 후 CLIENT, SYMPTOM으로부터 각각의 PK를 하나씩 FK로 받아와서 그 둘을 PK로 사용하게 하였습니다.
