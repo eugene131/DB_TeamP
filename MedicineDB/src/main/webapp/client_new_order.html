@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h4>약 주문하기 &nbsp;&nbsp;&nbsp;
+	<button onClick="location.href='client_menu.html'">주문 취소</button>
+<form method="post" action="client_new_order.jsp">
+	</h4>
+	<label>주문 번호: </label>
+	<input type="number" id="o_num" name="o_num"><br>
+	<label>약 이름: </label>
+	<input type="text" id="m_name" name="m_name"><br>
+	<label>수량: </label>
+	<input type="number" id="m_count" name="m_count"><br>
+	<label>처방전 유무: </label>
+	<input type="radio" name="m_prescription" value="1">O
+	<input type="radio" name="m_prescription" value="0">X<br>
+	<label>주문받은 약사 이름: </label>
+	<input type="text" id="chemist_name" name="chemist_name"><br>
+	<input type="reset" value="Reset">&nbsp;<input type="submit" value="주문">
+</form>
+	
+	
+</body>
+</html>

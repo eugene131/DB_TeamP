@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>client order</title>
+</head>
+<body>
+<h3>주문 조회 &nbsp;&nbsp;&nbsp;
+<button onClick="location.href='client_menu.html'">메뉴로 돌아가기</button>
+</h3>
+<form method="post" action="get_client_order.jsp">
+	<h4>약 이름으로 검색</h4>
+	<label>약 이름: </label>
+	<input type="text" id="m_name" name="m_name">
+	<input type="submit" value="검색"><br>
+</form>
+
+<form method="post" action="get_client_order.jsp">
+	<h4>약 번호로 검색</h3>
+	<label>약 번호: </label>
+	<input type="text" id="m_num" name="m_num">
+	<input type="submit" value="검색"><br><br>
+</form>
+	<button onClick="location.href='client_new_order.html'">약 주문 하기</button><br>
+	<br>
+</body>
+</html>
