@@ -30,6 +30,16 @@
 	String clientID = request.getParameter("client_id");
 	String chemistID = request.getParameter("chemist_id");
 	
+	
+	//for session
+	session.setAttribute("serverIP", serverIP);
+	session.setAttribute("strSID", strSID);
+	session.setAttribute("portNum", portNum);
+	session.setAttribute("user",user);
+	session.setAttribute("pass",pass);
+	session.setAttribute("url",url);
+	
+	
 	// client login
 	if (chemistID==null && !clientID.equals("")){
 		session.setAttribute("clientID",clientID);
