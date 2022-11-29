@@ -14,9 +14,11 @@
 
 
 <%
-String URL = "jdbc:oracle:thin:@localhost:1600:xe";
-String USER_UNIVERSITY ="test";
-String USER_PASSWD ="comp322";
+
+String user = (String)session.getAttribute("user");
+String pass = (String)session.getAttribute("pass");
+String url = (String)session.getAttribute("url");
+
 Connection conn = null; // Connection object
 Statement stmt = null;	// Statement object
 
@@ -33,7 +35,7 @@ try {
 
 // Make a connection
 try{
-	conn = DriverManager.getConnection(URL, USER_UNIVERSITY, USER_PASSWD); 
+	conn = DriverManager.getConnection(url, user, pass); 
 	stmt = conn.createStatement();
 	//out.println("Oracle Connected.\n");
 }catch(SQLException ex) {
