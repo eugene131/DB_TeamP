@@ -17,12 +17,12 @@
 	
 	</h4>
 <%
-	String serverIP = "localhost";
-	String strSID = "orcl";
-	String portNum = "1521";
-	String user = "medicine";
-	String pass = "comp322";
-	String url = "jdbc:oracle:thin:@"+serverIP+":"+portNum+":"+strSID;
+	String serverIP = (String)session.getAttribute("serverIP");
+	String strSID = (String)session.getAttribute("strSID");
+	String portNum = (String)session.getAttribute("portNum");
+	String user = (String)session.getAttribute("user");
+	String pass = (String)session.getAttribute("pass");
+	String url = (String)session.getAttribute("url");
 	//System.out.println(url);
 	Connection conn = null;
 	PreparedStatement pstmt;
