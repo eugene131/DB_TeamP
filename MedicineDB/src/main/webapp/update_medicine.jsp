@@ -42,7 +42,7 @@
     rs=pstmt.executeQuery(); 
     %>
     <h4>------ update complete --------</h4>
-    <%out.println("<button name=\"button\" onclick= \"location.href='chemist_nemu.html'\">메인 화면으로 돌아가기</button>"); %>
+    <%out.println("<button name=\"button\" onclick= \"location.href='chemist_menu.html'\">메인 화면으로 돌아가기</button>"); %>
 
 				
 </body>
