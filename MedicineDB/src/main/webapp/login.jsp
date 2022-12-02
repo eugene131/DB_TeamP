@@ -98,7 +98,7 @@
 			else {
 				// *******************************************************
 				// 합칠때 이동할 html 페이지 수정할 부분 **************************
-				out.println("<button onClick=\"location.href=\'main.html\'\">고객 관리</button><br>");
+				out.println("<button onClick=\"location.href=\'test3-1.html\'\">고객 관리</button><br>");
 				out.println("<button onClick=\"location.href=\'chemist_order_manage.jsp\'\">주문 관리</button><br>");
 				out.println("<button onClick=\"location.href=\'medicine_stock.html\'\">약 재고 관리</button><br><br>");
 				out.println("<button onClick=\"location.href=\'main.html\'\">로그아웃</button><br>");
