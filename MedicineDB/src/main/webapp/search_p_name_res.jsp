@@ -28,7 +28,7 @@
 					+ "on s.m_number=m.m_number "
 					+ "where m.name like '%" + request.getParameter("m_name") + "%' and p.Address like '%" + request.getParameter("p_address")
 					+ "%'";
-				System.out.println(query); 
+				//System.out.println(query); 
 				pstmt=conn.prepareStatement(query); 
 				rs=pstmt.executeQuery(); %>
 				<h4>------ 약국 검색 결과 --------</h4>
@@ -43,11 +43,11 @@
 						out.println("<tr>");
 							out.println("<td>"+rs.getString(1)+"</td>");
 							out.println("<td>"+rs.getString(2)+"</td>");
-							System.out.println("<td>"+rs.getString(2)+"</td>"); // console
+							//System.out.println("<td>"+rs.getString(2)+"</td>"); // console
 							out.println("</tr>");
 						}
 						out.println("</table>");
-						out.println("<button name=\"button\" onclick= \"location.href='main.html'\">메인 화면으로 돌아가기</button>");
+						out.println("<br><button name=\"button\" onclick= \"location.href='client_menu.html'\">메인 화면으로 돌아가기</button>");
 						rs.close();
 						pstmt.close();
 						%>

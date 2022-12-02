@@ -29,7 +29,7 @@
 				String query1="select name, price, drug_type, dosing_interval, info "+ "from medicine " + "where price<=" +
 				request.getParameter("price") + " and name like'%" + request.getParameter("m_name") + "%' and drug_type='" +
 				request.getParameter("type")+ "' and info like'%" + request.getParameter("Condition") + "%'";
-				System.out.println(query1); 
+				//System.out.println(query1); 
 				pstmt1=conn.prepareStatement(query1); 
 				rs1=pstmt1.executeQuery(); 
 				out.println("<h4>------ 약 결과 --------</h4>");
@@ -50,7 +50,7 @@
 							out.println("</tr>");
 						}
 						out.println("</table>");
-						out.println("<button name=\"button\" onclick= \"location.href='main.html'\">메인 화면으로 돌아가기</button>");
+						out.println("<button name=\"button\" onclick= \"location.href='chemist_menu.html'\">메인 화면으로 돌아가기</button>");
 						rs1.close();
 						pstmt1.close();
 						}

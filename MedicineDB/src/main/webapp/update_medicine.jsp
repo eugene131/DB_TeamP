@@ -7,12 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% String serverIP="localhost" ;
-    String strSID="MONGO" ; 
-    String portNum="1521" ; 
-    String user="medic" ; 
-    String pass="1234" ; 
-    String url="jdbc:oracle:thin:@" +serverIP+":"+portNum+":"+strSID;
+	<% String serverIP=(String)session.getAttribute("serverIP"); 
+	String strSID=(String)session.getAttribute("strSID");  
+	String portNum=(String)session.getAttribute("portNum"); 
+	String user=(String)session.getAttribute("user");  
+	String pass=(String)session.getAttribute("pass");  
+	String url=(String)session.getAttribute("url");
     Connection conn=null; 
     PreparedStatement pstmt; 
     ResultSet rs;
@@ -37,7 +37,7 @@
     pstmt=conn.prepareStatement(query); 
     rs=pstmt.executeQuery(); %>
     <h4>------ update complete --------</h4>
-    <%out.println("<button name=\"button\" onclick= \"location.href='main.html'\">메인 화면으로 돌아가기</button>"); %>
+    <%out.println("<button name=\"button\" onclick= \"location.href='chemist.html'\">메인 화면으로 돌아가기</button>"); %>
 
 				
 </body>

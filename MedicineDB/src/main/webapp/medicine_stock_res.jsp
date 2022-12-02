@@ -15,7 +15,7 @@
 				String user=(String)session.getAttribute("user");  
 				String pass=(String)session.getAttribute("pass");  
 				String url=(String)session.getAttribute("url");
-				out.println(url); 
+				
 				Connection conn=null; 
 				PreparedStatement pstmt; 
 				ResultSet rs;
@@ -33,7 +33,7 @@
 					+ "from M_STORE m inner join chemist c "
 					+ "on m.pharmacy_num=c.pharmacy_num "
 					+ "where c.ID = " + Ch_ID + " and m.m_number = " + request.getParameter("medicine_num");
-				System.out.println(query); 
+				//System.out.println(query); 
 				pstmt=conn.prepareStatement(query); 
 				rs=pstmt.executeQuery(); %>
 				<h4>------ 약국 검색 결과 --------</h4>
@@ -50,19 +50,19 @@
 							out.println("<tr>");
 							out.println("<td>"+rs.getString(1)+"</td>");
 							out.println("<td>"+rs.getString(2)+"</td>");
-							System.out.println("<td>"+rs.getString(2)+"</td>"); // console
+							//System.out.println("<td>"+rs.getString(2)+"</td>"); // console
 							out.println("</tr>");
 						}
 						out.println("</table>");
 						if (checkcount==0){
 							out.println("약을 추가 하시겠습니까?");
 							out.println("<button name=\"button\" onclick= \"location.href='m_insert.html'\">예</button>");
-							out.println("<button name=\"button\" onclick= \"location.href='main.html'\">메인 화면으로 돌아가기</button>");//메인 화면으로 돌아
+							out.println("<button name=\"button\" onclick= \"location.href='chemist_menu.html'\">메인 화면으로 돌아가기</button>");//메인 화면으로 돌아
 						}
 						else{
 							out.println("해당 약의 재고를 변경 하시겠습니까?");
 							out.println("<button name=\"button\" onclick= \"location.href='update_medicine.html'\">예</button>");
-							out.println("<button name=\"button\" onclick= \"location.href='main.html'\">메인 화면으로 돌아가기</button>");//메인 화면으로 돌아
+							out.println("<button name=\"button\" onclick= \"location.href='chemist_menu.html'\">메인 화면으로 돌아가기</button>");//메인 화면으로 돌아
 				
 							}
 				
