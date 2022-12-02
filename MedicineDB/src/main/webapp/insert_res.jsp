@@ -29,13 +29,14 @@
 				rs.next();
 				System.out.println(rs.getString(1));
 				String p_num=rs.getString(1);
+				String m_num = (String)session.getAttribute("medicine_num");
 				//query====================================
-				String query="INSERT INTO M_STORE VALUES (" + request.getParameter("medicine_num") + "," + p_num + "," + request.getParameter("medicine_stock") + ")";
+				String query="INSERT INTO M_STORE VALUES (" + m_num + "," + p_num + "," + request.getParameter("medicine_stock") + ")";
 				System.out.println(query); 
 				pstmt=conn.prepareStatement(query); 
 				rs=pstmt.executeQuery(); %>
 				<h4>------ insert complete --------</h4>
-
+				<%out.println("<button name=\"button\" onclick= \"location.href='chemist_menu.html'\">메인 화면으로 돌아가기</button>"); %>
 				
 </body>
 </html>
