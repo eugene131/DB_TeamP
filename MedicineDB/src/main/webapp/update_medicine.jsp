@@ -35,9 +35,14 @@
     String query="update m_store set stock = " + request.getParameter("medicine_stock") + " where m_number=" + m_num + " and pharmacy_num =" + p_num;
     System.out.println(query); 
     pstmt=conn.prepareStatement(query); 
-    rs=pstmt.executeQuery(); %>
+    rs=pstmt.executeQuery(); 
+    query = "delete from m_store where stock=0";
+    System.out.println(query);
+    pstmt=conn.prepareStatement(query); 
+    rs=pstmt.executeQuery(); 
+    %>
     <h4>------ update complete --------</h4>
-    <%out.println("<button name=\"button\" onclick= \"location.href='chemist.html'\">메인 화면으로 돌아가기</button>"); %>
+    <%out.println("<button name=\"button\" onclick= \"location.href='main.html'\">메인 화면으로 돌아가기</button>"); %>
 
 				
 </body>
