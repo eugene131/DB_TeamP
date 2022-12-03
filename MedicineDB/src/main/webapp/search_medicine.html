@@ -4,33 +4,132 @@
 <head>
   <meta charset="UTF-8">
   <title>약 검색</title>
+ <style>
+.btn {
+	margin: 8px 0;
+	height: 35.33px;
+	width: 100px;
+	border: none;
+	background: #648FFF;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+
+}
+#back_btn{
+ 	height: 35.33px;
+	align-items: center;
+	display: flex;
+	border: none;
+ 	background: #606060;
+ 	top: 500px;
+ 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+}
+h4 {
+	position: absolute;
+	width: 400px;
+	height: 44px;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 100px;
+	
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 44px;
+	
+	display: flex;
+	align-items: center;
+	text-align: center;
+	
+	color: #000000;
+}
+input[type=text]{
+	width:30%;
+	border:2px solid #aaa;
+	border-radius:4px;
+	margin: 8px 0;
+	outline: none;
+	padding:8px;
+	box-sizing: border-box;
+	align-items: center;
+	transition:.3s;
+}
+
+input[type=text]:focus{
+	border-color:dodgerBlue;
+	box-shadow:0 0 8px 0 dodgetBlue;
+}
+.p1 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 200px;
+}
+.p2 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 260px;
+}
+.p3 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	width: 50%;
+	top: 280px;
+}
+.p4 {
+	position: absolute;
+
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 360px;
+}
+.p5 {
+	width: 50%;
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 380px;
+}
+.p6 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 450px;
+}
+.p7 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 480px;
+}
+</style>
 </head>
 
 <body>
   <h4>약 검색&nbsp;&nbsp;&nbsp;
-  <button onClick="location.href='client_menu.html'">메뉴로 돌아가기</button></h4>
+  <button onClick="location.href='client_menu.html'" id="back_btn">메뉴로 돌아가기</button></h4>
   <form action="search_medic_res.jsp">
-    <p>
-      증상을 입력해 주세요
-      <input name="Condition" type="tel">
+    <p class="p1">
+      증상을 입력해 주세요:&nbsp;
+      <input name="Condition" type="text"></p>
 
-    <p>
-      가격을 입력해 주세요. 입력하신 가격보다 낮은 가격의 약을 보여드립니다.
-    <p>
-      <input name="price" type="tel">
-    <p>
-      약 이름을 입력해 주세요.
-    <p>
-      <input name="m_name" type="tel">
-    <p>
+    <p class="p2">
+      가격을 입력해 주세요. 입력하신 가격보다 낮은 가격의 약을 보여드립니다.</p>
+    <p class="p3">
+      <input name="price" type="text"></p>
+    <p class="p4">
+      약 이름을 입력해 주세요.</p>
+    <p class="p5">
+      <input name="m_name" type="text"></p>
+    <p class="p6">
       타입을 선택해 주세요
       <select name="type">
         <option value="알약" selected>알약</option>
         <option value="캡슐">캡슐</option>
         <option value="병">병</option>
-      </select>
-    <p>
-      <input type="reset"> <input type="submit">
+      </select></p>
+    <p class="p7">
+      <input type="reset" class="btn"> <input type="submit" class="btn"></p>
   </form>
 </body>
 

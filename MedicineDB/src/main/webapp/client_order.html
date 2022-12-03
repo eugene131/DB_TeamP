@@ -3,25 +3,116 @@
 <head>
 <meta charset="UTF-8">
 <title>client order</title>
+<style>
+.btn {
+	margin: 8px 0;
+	height: 35.33px;
+	width: 100px;
+	border: none;
+	background: #648FFF;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+
+}
+#back_btn{
+ 	height: 35.33px;
+	align-items: center;
+	display: flex;
+	border: none;
+ 	background: #606060;
+ 	top: 500px;
+ 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+}
+h4 {
+	position: absolute;
+	width: 400px;
+	height: 44px;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 100px;
+	
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 44px;
+	
+	display: flex;
+	align-items: center;
+	text-align: center;
+	
+	color: #000000;
+}
+input[type=text]{
+	width:30%;
+	border:2px solid #aaa;
+	border-radius:4px;
+	margin: 8px 0;
+	outline: none;
+	padding:8px;
+	box-sizing: border-box;
+	align-items: center;
+	transition:.3s;
+}
+
+input[type=text]:focus{
+	border-color:dodgerBlue;
+	box-shadow:0 0 8px 0 dodgetBlue;
+}
+#m_name {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 200px;
+}
+.p1 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 240px;
+	width: 50%;
+}
+#m_num {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 310px;
+}
+.p2 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 350px;
+	width: 50%;
+}
+.p3 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	width: 50%;
+	top: 450px;
+}
+
+</style>
 </head>
 <body>
-<h3>주문 조회 &nbsp;&nbsp;&nbsp;
-<button onClick="location.href='client_menu.html'">메뉴로 돌아가기</button>
-</h3>
+<h4>주문 조회 &nbsp;&nbsp;&nbsp;
+<button onClick="location.href='client_menu.html'" id="back_btn">메뉴로 돌아가기</button>
+</h4>
 <form method="post" action="get_client_order.jsp">
-	<h4>약 이름으로 검색</h4>
-	<label>약 이름: </label>
-	<input type="text" id="m_name" name="m_name">
-	<input type="submit" value="검색"><br>
+	<h3 id="m_name">약 이름으로 검색</h3>
+	<p class="p1">약 이름: 
+	<input type="text" name="m_name">
+	<input type="submit" value="검색"></p>
 </form>
 
 <form method="post" action="get_client_order.jsp">
-	<h4>약 번호로 검색</h3>
-	<label>약 번호: </label>
-	<input type="text" id="m_num" name="m_num">
-	<input type="submit" value="검색"><br><br>
+	<h3 id="m_num">약 번호로 검색</h3>
+	<p class="p2">약 번호: 
+	<input type="text" name="m_num">
+	<input type="submit" value="검색"></p><br>
 </form>
-	<button onClick="location.href='client_new_order.html'">약 주문 하기</button><br>
+<p class="p3">
+	<button onClick="location.href='client_new_order.html'" class="btn">약 주문 하기</button></p><br>
 	<br>
 </body>
 </html>
