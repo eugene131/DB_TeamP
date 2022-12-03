@@ -66,10 +66,10 @@ h4 {
 
 <% 
 	String serverIP = "localhost";
-	String strSID = "orcl";
+	String strSID = "MONGO";
 	String portNum = "1521";
-	String user = "medicine";
-	String pass = "comp322";
+	String user = "medic";
+	String pass = "1234";
 	String url = "jdbc:oracle:thin:@"+serverIP+":"+portNum+":"+strSID;
 	//System.out.println(url);
 	Connection conn = null;
@@ -118,7 +118,7 @@ h4 {
 				out.println("<button onClick=\"location.href=\'shearch_p_name.html\'\">약국 검색</button><br><br>");
 				out.println("<button onClick=\"location.href=\'client_order.html\'\">약 주문, 주문 조회</button><br><br>");
 				out.println("<button onClick=\"location.href=\'test2-1.html\'\">병력 기록</button><br><br>");
-				out.println("<button onClick=\"location.href=\'main.html\'\">개인정보 수정</button><br><br>");
+				out.println("<button onClick=\"location.href=\'test4-1.jsp\'\">개인정보 수정</button><br><br>");
 				out.println("<button onClick=\"location.href=\'main.html\'\" id=\"back_btn\">로그아웃</button><br>");
 			}
 			System.out.println("\n");
