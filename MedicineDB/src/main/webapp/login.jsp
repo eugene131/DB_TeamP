@@ -66,10 +66,10 @@ h4 {
 
 <% 
 	String serverIP = "localhost";
-	String strSID = "MONGO";
+	String strSID = "orcl";
 	String portNum = "1521";
-	String user = "medic";
-	String pass = "1234";
+	String user = "medicine";
+	String pass = "comp322";
 	String url = "jdbc:oracle:thin:@"+serverIP+":"+portNum+":"+strSID;
 	//System.out.println(url);
 	Connection conn = null;
