@@ -1,0 +1,23 @@
+<실행방법>
+MedicineDB 프로젝트를 eclipse EE버전에서 import 합니다.
+(Eclipse IDE version: 2021-09 (4.21.0), Build id: 20210910-1417)
+
+프로젝트 안에있는
+MedicineDB > src > main> webapp 
+폴더 안의
+login.jsp 파일을 열어서 jdbc 버전과 user, pass등 데이터베이스 정보를 사용자에 맞게 추가합니다.
+
+/* (68번째 줄 아래 부분만 변경하면 됩니다.)
+String serverIP = "localhost";
+String strSID = "orcl";
+String portNum = "1521";
+String user = "medicine";
+String pass = "comp322";
+*/
+
+변경된 내용을 저장합니다.
+
+Eclipse IDE 상단바에서 Window > Web Browser를 Chrome으로 바꿔줍니다.
+
+login.jsp와 동일한 경로 안에 있는 (MedicineDB > src > main> webapp)
+main.html을 실행합니다.
