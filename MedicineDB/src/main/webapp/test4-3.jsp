@@ -7,6 +7,90 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.btn {
+	margin: 8px 0;
+	height: 35.33px;
+	width: 100px;
+	border: none;
+	background: #648FFF;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+
+}
+#back_btn{
+ 	height: 35.33px;
+	align-items: center;
+	display: flex;
+	border: none;
+ 	background: #606060;
+ 	top: 500px;
+ 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+	width: 40%;
+}
+h4 {
+	position: absolute;
+	width: 500px;
+	height: 44px;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 100px;
+	
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 44px;
+	
+	display: flex;
+	align-items: center;
+	text-align: center;
+	
+	color: #000000;
+}
+h3 {
+	position: absolute;
+	width: 1000px;
+	height: 44px;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 200px;
+	
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 25px;
+	line-height: 44px;
+	
+	display: flex;
+	align-items: center;
+	text-align: center;
+	
+	color: #000000;
+}
+h2 {
+	position: absolute;
+	width: 1000px;
+	height: 44px;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 250px;
+	
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 25px;
+	line-height: 44px;
+	
+	display: flex;
+	align-items: center;
+	text-align: center;
+	
+	color: #000000;
+}
+</style>
 </head>
 <body>
 
@@ -50,10 +134,10 @@ String sql = null;
 	String address = request.getParameter("address");
 	String phone_num = request.getParameter("phone_num");
 	if (address.length() == 0) {
-		out.println("주소를 입력해주십시오.");
+		out.println("<h3>주소를 입력해주십시오.</h3>");
 	}
 	else if (phone_num.length() != 11) {
-		out.println("잘못된 전화번호입니다.");
+		out.println("<h3>잘못된 전화번호입니다.</h3>");
 	}
 	else {
 		sql = "UPDATE CLIENT"
@@ -61,15 +145,15 @@ String sql = null;
 						+ "WHERE ID = '"+clientID+"'";
 		rs = stmt.executeQuery(sql);
 		
-		out.println("성공적으로 수정하였습니다.");
+		out.println("<h3>성공적으로 수정하였습니다.</h3>");
 		
 	}
 	
 
 
 %>
-
-<button onclick = "location.href = 'test4-1.jsp'">개인 정보 화면으로</button>
-
+<h4>
+<button onclick = "location.href = 'test4-1.jsp'" id="back_btn">개인 정보 화면으로</button>
+</h4>
 </body>
 </html>

@@ -9,6 +9,90 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.btn {
+	margin: 8px 0;
+	height: 35.33px;
+	width: 100px;
+	border: none;
+	background: #648FFF;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+
+}
+#back_btn{
+ 	height: 35.33px;
+	align-items: center;
+	display: flex;
+	border: none;
+ 	background: #606060;
+ 	top: 500px;
+ 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+	width: 30%;
+}
+h4 {
+	position: absolute;
+	width: 700px;
+	height: 44px;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 100px;
+	
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 44px;
+	
+	display: flex;
+	align-items: center;
+	text-align: center;
+	
+	color: #000000;
+}
+h3 {
+	position: absolute;
+	width: 1000px;
+	height: 44px;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 200px;
+	
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 25px;
+	line-height: 44px;
+	
+	display: flex;
+	align-items: center;
+	text-align: center;
+	
+	color: #000000;
+}
+h2 {
+	position: absolute;
+	width: 1000px;
+	height: 44px;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 250px;
+	
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 25px;
+	line-height: 44px;
+	
+	display: flex;
+	align-items: center;
+	text-align: center;
+	
+	color: #000000;
+}
+</style>
 </head>
 <body>
 
@@ -59,7 +143,7 @@ try {
 		test.setLenient(false);
 		test.parse(date);
 		}catch(ParseException e){
-			out.println("올바른 형식이 아닙니다.<br>");
+			out.println("<h3>올바른 형식이 아닙니다.<br></h3>");
 		}
 	String sql ="select name from medicine";
 	rs = stmt.executeQuery(sql);
@@ -71,7 +155,7 @@ try {
 		}
 	}
 	if(i == 0) {
-		out.println("데이터베이스에 없는 약입니다.<br>");
+		out.println("<h2>데이터베이스에 없는 약입니다.</h2>");
 	}
 	
 	else{
@@ -84,7 +168,7 @@ try {
 	sql = "Insert INTO CASE_HISTORY VALUES(" + (count+1) + ", TO_DATE('" + date + "', 'yyyy-mm-dd'), '" + medicine +"','" + Id +"')";
 	int res = stmt.executeUpdate(sql);
 	if(res == 1)
-		out.println("병력기록이 성공적으로 추가 되었습니다.<br>");
+		out.println("<h3>병력기록이 성공적으로 추가 되었습니다.<br></h3>");
 		conn.commit();
 	}
 	rs.close();
@@ -94,7 +178,7 @@ ex2.printStackTrace();
 
 %>
 <br><br>
-<button onclick = "location.href = 'test1-1.html'">이전</button>
-
+<h4>병력 기록 추가&nbsp;&nbsp;&nbsp;<button onclick = "location.href = 'test1-1.html'" id="back_btn">이전으로</button>
+</h4>
 </body>
 </html>

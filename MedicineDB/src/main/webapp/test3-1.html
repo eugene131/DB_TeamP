@@ -4,38 +4,134 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.btn {
+	margin: 8px 0;
+	height: 35.33px;
+	width: 100px;
+	border: none;
+	background: #648FFF;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+
+}
+#back_btn{
+ 	height: 35.33px;
+	align-items: center;
+	display: flex;
+	border: none;
+ 	background: #606060;
+ 	top: 500px;
+ 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+}
+h4 {
+	position: absolute;
+	width: 400px;
+	height: 44px;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 100px;
+	
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 44px;
+	
+	display: flex;
+	align-items: center;
+	text-align: center;
+	
+	color: #000000;
+}
+input[type=text]{
+	width:30%;
+	border:2px solid #aaa;
+	border-radius:4px;
+	margin: 8px 0;
+	outline: none;
+	padding:8px;
+	box-sizing: border-box;
+	align-items: center;
+	transition:.3s;
+}
+
+input[type=text]:focus{
+	border-color:dodgerBlue;
+	box-shadow:0 0 8px 0 dodgetBlue;
+}
+input[type=number]{
+	width:30%;
+	border:2px solid #aaa;
+	border-radius:4px;
+	margin: 8px 0;
+	outline: none;
+	padding:8px;
+	box-sizing: border-box;
+	align-items: center;
+	transition:.3s;
+}
+
+input[type=number]:focus{
+	border-color:dodgerBlue;
+	box-shadow:0 0 8px 0 dodgetBlue;
+}
+.p1 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 210px;
+	width: 50%;
+}
+.p2 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 250px;
+	width: 50%;
+}
+
+</style>
 </head>
 <body>
 
-<h1>고객 조회 화면</h1>
-<button onClick="location.href='chemist_menu.html'">메뉴로 돌아가기</button>
-<br><br>
+<h4> 고객 조회 &nbsp;&nbsp;&nbsp;
+<button onClick="location.href='chemist_menu.html'" id="back_btn">메뉴로 돌아가기</button></h4>
 
-<form action ="./test3-2.jsp">
- 1. 조회를 원하는 고객의 증상을 아래에서 하나 선택하여 주십시오.
-<select name="Symptom">
-<option value ="두통" selected>두통</option>
-<option value ="치통">치통</option>
-<option value ="근육통">근육통</option>
-<option value ="염좌">염좌</option>
-<option value = "관절통">관절통</option>
-<option value ="발열">발열</option>
-<option value ="기침">기침</option>
-<option value ="코막힘">코막힘</option>
-<option value ="콧물">콧물</option>
-<option value ="인후통">인후통</option>
-<option value = "복통">복통</option>
-<option value ="소화불량">소화불량</option>
-<option value ="식체(체함)">식체(체함)</option>
-<option value ="타박상">타박상</option>
-<option value ="눈 건조">눈 건조</option>
-<option value ="상처">상처</option>
-<option value = "여드름">여드름</option>
-</select>
 
- <button type = "submit"> 확인 </button>
- <br><br>
- </form>
+	<form action ="./test3-2.jsp">
+	<p class="p1">
+	
+	조회를 원하는 고객의 증상을 아래에서 하나 선택하여 주십시오.
+		<select name="Symptom">
+		<option value ="두통" selected>두통</option>
+		<option value ="치통">치통</option>
+		<option value ="근육통">근육통</option>
+		<option value ="염좌">염좌</option>
+		<option value = "관절통">관절통</option>
+		<option value ="발열">발열</option>
+		<option value ="기침">기침</option>
+		<option value ="코막힘">코막힘</option>
+		<option value ="콧물">콧물</option>
+		<option value ="인후통">인후통</option>
+		<option value = "복통">복통</option>
+		<option value ="소화불량">소화불량</option>
+		<option value ="식체(체함)">식체(체함)</option>
+		<option value ="타박상">타박상</option>
+		<option value ="눈 건조">눈 건조</option>
+		<option value ="상처">상처</option>
+		<option value = "여드름">여드름</option>
+		</select>	
+	</p>
+	<p class="p2">
+	 <button type = "submit" class="btn"> 확인 </button>
+	 </p>
+	</form>
+
+
+	
 
 </body>
 </html>

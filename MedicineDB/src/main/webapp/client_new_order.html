@@ -3,24 +3,137 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.btn {
+	margin: 8px 0;
+	height: 35.33px;
+	width: 100px;
+	border: none;
+	background: #648FFF;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+
+}
+#back_btn{
+ 	height: 35.33px;
+	align-items: center;
+	display: flex;
+	border: none;
+ 	background: #606060;
+ 	top: 500px;
+ 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+}
+h4 {
+	position: absolute;
+	width: 400px;
+	height: 44px;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 100px;
+	
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 44px;
+	
+	display: flex;
+	align-items: center;
+	text-align: center;
+	
+	color: #000000;
+}
+input[type=text]{
+	width:30%;
+	border:2px solid #aaa;
+	border-radius:4px;
+	margin: 8px 0;
+	outline: none;
+	padding:8px;
+	box-sizing: border-box;
+	align-items: center;
+	transition:.3s;
+}
+
+input[type=text]:focus{
+	border-color:dodgerBlue;
+	box-shadow:0 0 8px 0 dodgetBlue;
+}
+input[type=number]{
+	width:30%;
+	border:2px solid #aaa;
+	border-radius:4px;
+	margin: 8px 0;
+	outline: none;
+	padding:8px;
+	box-sizing: border-box;
+	align-items: center;
+	transition:.3s;
+}
+
+input[type=number]:focus{
+	border-color:dodgerBlue;
+	box-shadow:0 0 8px 0 dodgetBlue;
+}
+.p1 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 210px;
+	width: 50%;
+}
+.p2 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 250px;
+	width: 50%;
+}
+.p3 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	width: 50%;
+	top: 290px;
+}
+.p4 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	width: 50%;
+	top: 345px;
+}
+.p5 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	width: 50%;
+	top: 375px;
+}
+.p6 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	width: 50%;
+	top: 430px;
+}
+</style>
 </head>
 <body>
 <h4>약 주문하기 &nbsp;&nbsp;&nbsp;
-	<button onClick="location.href='client_menu.html'">주문 취소</button>
+	<button onClick="location.href='client_menu.html'" id="back_btn">주문 취소</button>
 <form method="post" action="client_new_order.jsp">
 	</h4>
-	<label>주문 번호: </label>
-	<input type="number" id="o_num" name="o_num"><br>
-	<label>약 이름: </label>
-	<input type="text" id="m_name" name="m_name"><br>
-	<label>수량: </label>
-	<input type="number" id="m_count" name="m_count"><br>
-	<label>처방전 유무: </label>
+	<p class="p1">주문 번호: 
+	<input type="number" id="o_num" name="o_num"></p>
+	<p class="p2">약 이름: 
+	<input type="text" id="m_name" name="m_name"></p>
+	<p class="p3">수량: 
+	<input type="number" id="m_count" name="m_count"></p>
+	<p class="p4">처방전 유무: 
 	<input type="radio" name="m_prescription" value="1">O
-	<input type="radio" name="m_prescription" value="0">X<br>
-	<label>주문받은 약사 이름: </label>
-	<input type="text" id="chemist_name" name="chemist_name"><br>
-	<input type="reset" value="Reset">&nbsp;<input type="submit" value="주문">
+	<input type="radio" name="m_prescription" value="0">X</p>
+	<p class="p5">주문받은 약사 이름: 
+	<input type="text" id="chemist_name" name="chemist_name"></p>
+	<p class="p6"><input type="reset" value="Reset" class="btn">&nbsp;<input type="submit" value="주문" class="btn"></p>
 </form>
 	
 	

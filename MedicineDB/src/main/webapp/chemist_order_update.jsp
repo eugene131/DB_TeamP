@@ -9,10 +9,197 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.btn {
+	margin: 8px 0;
+	height: 35.33px;
+	width: 100px;
+	border: none;
+	background: #648FFF;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+
+}
+#back_btn{
+ 	height: 35.33px;
+	align-items: center;
+	display: flex;
+	border: none;
+ 	background: #606060;
+ 	top: 500px;
+ 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+	width: 30%;
+}
+h4 {
+	position: absolute;
+	width: 700px;
+	height: 44px;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 100px;
+	
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 44px;
+	
+	display: flex;
+	align-items: center;
+	text-align: center;
+	
+	color: #000000;
+}
+h3 {
+	position: absolute;
+	width: 400px;
+	height: 44px;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 100px;
+	
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 25px;
+	line-height: 44px;
+	
+	display: flex;
+	align-items: center;
+	text-align: center;
+	
+	color: #000000;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 80%;
+  left: 120px;
+  border: none;
+  position: absolute;
+  height: 44px;
+  top: 210px;
+  align-items: center;
+  text-align: center;
+}
+th,
+td {
+  padding: 6px 15px;
+}
+th {
+  background: #42444e;
+  color: #fff;
+  text-align: left;
+}
+tr:first-child th:first-child {
+  border-top-left-radius: 6px;
+}
+tr:first-child th:last-child {
+  border-top-right-radius: 6px;
+}
+td {
+  border-right: 1px solid #c6c9cc;
+  border-bottom: 1px solid #c6c9cc;
+}
+td:first-child {
+  border-left: 1px solid #c6c9cc;
+}
+tr:nth-child(even) td {
+  background: #eaeaed;
+}
+tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+}
+.p1 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 290px;
+	width: 50%;
+}
+.p2 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 345px;
+	width: 50%;
+}
+.p3 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	width: 50%;
+	top: 370px;
+}
+.p4 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	width: 50%;
+	top: 410px;
+}
+.p5 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	width: 50%;
+	top: 470px;
+}
+
+input[type=text]{
+	width:30%;
+	border:2px solid #aaa;
+	border-radius:4px;
+	margin: 8px 0;
+	outline: none;
+	padding:8px;
+	box-sizing: border-box;
+	align-items: center;
+	transition:.3s;
+}
+
+input[type=text]:focus{
+	border-color:dodgerBlue;
+	box-shadow:0 0 8px 0 dodgetBlue;
+}
+input[type=number]{
+	width:30%;
+	border:2px solid #aaa;
+	border-radius:4px;
+	margin: 8px 0;
+	outline: none;
+	padding:8px;
+	box-sizing: border-box;
+	align-items: center;
+	transition:.3s;
+}
+
+input[type=number]:focus{
+	border-color:dodgerBlue;
+	box-shadow:0 0 8px 0 dodgetBlue;
+}
+input[type=date]{
+	width:30%;
+	border:2px solid #aaa;
+	border-radius:4px;
+	margin: 8px 0;
+	outline: none;
+	padding:8px;
+	box-sizing: border-box;
+	align-items: center;
+	transition:.3s;
+}
+
+input[type=date]:focus{
+	border-color:dodgerBlue;
+	box-shadow:0 0 8px 0 dodgetBlue;
+}
+</style>
 </head>
 <body>
 	<h4>주문 수정 &nbsp;&nbsp;&nbsp;
-	<button onClick="location.href='chemist_menu.html'">메뉴로 돌아가기</button>
+	<button onClick="location.href='chemist_menu.html'" id="back_btn">메뉴로 돌아가기</button>
 	
 	</h4>
 <%
@@ -28,7 +215,7 @@
 	session.setAttribute("o_clientID",clientID);
 	session.setAttribute("o_num",o_num);
 %>
-	<table border="1">
+	<table>
 		<th>CLIENT_ID</th>
 		<th>CLIENT_NAME</th>
 		<th>ORDER_NUM</th>
@@ -49,16 +236,17 @@
 	<br>
 	<br>
 	<form method="post" action="chemist_order_update_complete.jsp">
-		<label>주문 날짜: </label>
-		<input type="date" name="o_date"><br>
-		<label>처방전 유무: </label>
+		<p class="p1"> 주문 날짜: 
+		<input type="date" name="o_date"></p>
+		<p class="p2"> 처방전 유무: 
 		<input type="radio" name="o_prescription" value="1">O
-		<input type="radio" name="o_prescription" value="0">X<br>
-		<label>약 이름: </label>
-		<input type="text" name = "m_name"><br>
-		<label>수량: </label>
-		<input type="number" name="count"><br><br>
-		<input type="reset" value="Reset">&nbsp;<input type="submit" value="수정">
+		<input type="radio" name="o_prescription" value="0">X</p>
+		<p class="p3"> 약 이름: 
+		<input type="text" name = "m_name"></p>
+		<p class="p4"> 수량: 
+		<input type="number" name="count"></p>
+		<p class="p5">
+		<input type="reset" value="Reset" class="btn">&nbsp;<input type="submit" value="수정" class="btn"></p>
 	</form>
 	
 </body>

@@ -9,10 +9,120 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.btn {
+	margin: 8px 0;
+	height: 35.33px;
+	width: 100px;
+	border: none;
+	background: #648FFF;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+
+}
+#back_btn{
+ 	height: 35.33px;
+	align-items: center;
+	display: flex;
+	border: none;
+ 	background: #606060;
+ 	top: 500px;
+ 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+	width: 30%;
+}
+h4 {
+	position: absolute;
+	width: 700px;
+	height: 44px;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 100px;
+	
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 44px;
+	
+	display: flex;
+	align-items: center;
+	text-align: center;
+	
+	color: #000000;
+}
+h3 {
+	position: absolute;
+	width: 1000px;
+	height: 44px;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 200px;
+	
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 25px;
+	line-height: 44px;
+	
+	display: flex;
+	align-items: center;
+	text-align: center;
+	
+	color: #000000;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 80%;
+  left: 120px;
+  border: none;
+  position: absolute;
+  height: 44px;
+  top: 210px;
+  align-items: center;
+  text-align: center;
+}
+th,
+td {
+  padding: 6px 15px;
+}
+th {
+  background: #42444e;
+  color: #fff;
+  text-align: left;
+}
+tr:first-child th:first-child {
+  border-top-left-radius: 6px;
+}
+tr:first-child th:last-child {
+  border-top-right-radius: 6px;
+}
+td {
+  border-right: 1px solid #c6c9cc;
+  border-bottom: 1px solid #c6c9cc;
+}
+td:first-child {
+  border-left: 1px solid #c6c9cc;
+}
+tr:nth-child(even) td {
+  background: #eaeaed;
+}
+tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+}
+
+</style>
 </head>
 <body>
 
-
+<h4> 병력 기록 조회 결과&nbsp;&nbsp;&nbsp;
+<button name="button" onclick= "location.href='client_menu.html'" id="back_btn">메인 화면으로 돌아가기</button></h4>
 <%
 String user = (String)session.getAttribute("user");
 String pass = (String)session.getAttribute("pass");
@@ -54,11 +164,9 @@ try {
 
 	if(rs.next()){
 		
-		out.println("<table border=\"1\">");
+		out.println("<table>");
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int cnt = rsmd.getColumnCount();
-		out.println("------------ 병력 기록 조회 화면 ------------");
-		out.println("<br><br>");
 
 		
 		rs.beforeFirst();
@@ -81,7 +189,7 @@ try {
 		}
 	
 	else {
-		out.println("조회된 기록이 없습니다");
+		out.println("<h3>조회된 기록이 없습니다</h3>");
 	}
 	rs.close();
 }catch(SQLException ex2) {
@@ -89,7 +197,6 @@ try {
 }
 
 %>
-<br><br>
-<button onclick = "location.href = 'test2-1.html'">이전</button>
+>
 </body>
 </html>

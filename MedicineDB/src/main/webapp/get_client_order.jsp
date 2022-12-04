@@ -10,9 +10,120 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
+<style>
+.btn {
+	margin: 8px 0;
+	height: 35.33px;
+	width: 100px;
+	border: none;
+	background: #648FFF;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+
+}
+#back_btn{
+ 	height: 35.33px;
+	align-items: center;
+	display: flex;
+	border: none;
+ 	background: #606060;
+ 	top: 500px;
+ 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+	width: 30%;
+}
+h4 {
+	position: absolute;
+	width: 700px;
+	height: 44px;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 100px;
+	
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 44px;
+	
+	display: flex;
+	align-items: center;
+	text-align: center;
+	
+	color: #000000;
+}
+h3 {
+	position: absolute;
+	width: 400px;
+	height: 44px;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 100px;
+	
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 25px;
+	line-height: 44px;
+	
+	display: flex;
+	align-items: center;
+	text-align: center;
+	
+	color: #000000;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 80%;
+  left: 120px;
+  border: none;
+  position: absolute;
+  height: 44px;
+  top: 210px;
+  align-items: center;
+  text-align: center;
+}
+th,
+td {
+  padding: 6px 15px;
+}
+th {
+  background: #42444e;
+  color: #fff;
+  text-align: left;
+}
+tr:first-child th:first-child {
+  border-top-left-radius: 6px;
+}
+tr:first-child th:last-child {
+  border-top-right-radius: 6px;
+}
+td {
+  border-right: 1px solid #c6c9cc;
+  border-bottom: 1px solid #c6c9cc;
+}
+td:first-child {
+  border-left: 1px solid #c6c9cc;
+}
+tr:nth-child(even) td {
+  background: #eaeaed;
+}
+tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+}
+
+</style>
 </head>
 <body>
-	<h4>약 주문 기록 조회</h4>
+	<h4>약 주문 기록 조회
+	&nbsp;&nbsp;&nbsp;<button name="button" onclick= "location.href='client_order.html'" id="back_btn">이전으로</button>
+	</h4>
 <%
 	String serverIP = (String)session.getAttribute("serverIP");
 	String strSID = (String)session.getAttribute("strSID");
@@ -43,9 +154,6 @@
 		int cnt = 0;
 		rs.next();
 		String c_name = rs.getString(1);
-		
-		out.println(c_name+"님의 주문기록 조회 결과 입니다. &nbsp;&nbsp;&nbsp;");
-		out.println("<button onClick=\"location.href=\'client_order.html\'\">이전으로</button><br><br>");
 		
 		//System.out.println(m_name);
 		//System.out.println(m_num);
@@ -101,7 +209,7 @@
 		}
 		else if (m_name==null){ //약 번호로 검색 클릭
 			if (m_num.equals("")){
-				out.println("약 번호를 입력해 주세요.<br><br>");
+				out.println("<h3>약 번호를 입력해 주세요.<br><br></h3>");
 			}
 			else{
 				try {

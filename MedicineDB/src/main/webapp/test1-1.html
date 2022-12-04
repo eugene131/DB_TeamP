@@ -4,22 +4,111 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.btn {
+	margin: 8px 0;
+	height: 35.33px;
+	width: 100px;
+	border: none;
+	background: #648FFF;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+
+}
+#back_btn{
+ 	height: 35.33px;
+	align-items: center;
+	display: flex;
+	border: none;
+ 	background: #606060;
+ 	top: 500px;
+ 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+}
+h4 {
+	position: absolute;
+	width: 1000px;
+	height: 44px;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 100px;
+	
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 44px;
+	
+	display: flex;
+	align-items: center;
+	text-align: center;
+	
+	color: #000000;
+}
+input[type=text]{
+	width:30%;
+	border:2px solid #aaa;
+	border-radius:4px;
+	margin: 8px 0;
+	outline: none;
+	padding:8px;
+	box-sizing: border-box;
+	align-items: center;
+	transition:.3s;
+}
+
+input[type=text]:focus{
+	border-color:dodgerBlue;
+	box-shadow:0 0 8px 0 dodgetBlue;
+}
+#m_name {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 200px;
+}
+.p1 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 240px;
+	width: 50%;
+}
+.p2 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 330px;
+	width: 50%;
+}
+.p3 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	width: 50%;
+	top: 350px;
+}
+.p4 {
+	position: absolute;
+	left: calc(50% - 307px/2 - 0.5px);
+	width: 50%;
+	top: 450px;
+}
+</style>
 </head>
 
-
-
 <body>
-<h1>병력 기록 추가 화면</h1>
+<h4>병력 기록 추가 화면&nbsp;&nbsp;&nbsp;
+<button onClick="location.href='client_menu.html'" id="back_btn">메뉴로 돌아가기</button>
+</h4>
 
-<button onclick = "location.href = 'test2-1.html'">병력 기록 조회 화면으로 이동</button>
-<button onClick="location.href='client_menu.html'">메뉴로 돌아가기</button>
-<br><br>
-<br><br>
 
 <form action ="./test1-2.jsp">
- 1. 형식에 알맞게 처방 받은 날짜를 입력해 주십시오(ex: yyyy-mm-dd)) <input type ="text" name = "Date"><br><br>
- 2. 처방받는 약을 입력해 주십시오. <input type ="text" name = "medicine"><br><br>
- <button type = "submit"> insert </button>
+<p class="p1">
+형식에 알맞게 처방 받은 날짜를 입력해 주십시오 (ex: yyyy-mm-dd) <input type ="text" name = "Date"></p>
+<p class="p2">
+처방받는 약을 입력해 주십시오. </p>
+<p class="p3"><input type ="text" name = "medicine"></p>
+<p class="p4"><button type = "submit" class="btn"> 추가하기 </button></p>
 
  </form>
 

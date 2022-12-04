@@ -10,10 +10,75 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.btn {
+	margin: 8px 0;
+	height: 35.33px;
+	width: 100px;
+	border: none;
+	background: #648FFF;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+
+}
+#back_btn{
+ 	height: 35.33px;
+	align-items: center;
+	display: flex;
+	border: none;
+ 	background: #606060;
+ 	top: 500px;
+ 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	font-size: 15px;
+	color: #FFFFFF;
+	width: 30%;
+}
+h4 {
+	position: absolute;
+	width: 700px;
+	height: 44px;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 100px;
+	
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 44px;
+	
+	display: flex;
+	align-items: center;
+	text-align: center;
+	
+	color: #000000;
+}
+h3 {
+	position: absolute;
+	width: 1000px;
+	height: 44px;
+	left: calc(50% - 307px/2 - 0.5px);
+	top: 200px;
+	
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 25px;
+	line-height: 44px;
+	
+	display: flex;
+	align-items: center;
+	text-align: center;
+	
+	color: #000000;
+}
+</style>
 </head>
 <body>
 	<h4>약 주문하기&nbsp;&nbsp;&nbsp;
-	<button onClick="location.href='client_menu.html'">메뉴로 돌아가기</button>
+	<button onClick="location.href='client_menu.html'" id="back_btn">메뉴로 돌아가기</button>
 	</h4>
 	<br>
 <%
@@ -58,7 +123,7 @@
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (!rs.next()){ // medicine name error
-				out.println("잘못된 주문입니다. 입력된 약 이름: "+m_name);
+				out.println("<h3>잘못된 주문입니다. 입력된 약 이름: "+m_name+"</h3>");
 			}
 			else {
 				m_num = rs.getString(1);
@@ -77,7 +142,7 @@
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (!rs.next()){ // medicine name error
-				out.println("잘못된 주문입니다. 입력된 약사 이름: "+chemist_name);
+				out.println("<h3>잘못된 주문입니다. 입력된 약사 이름: "+chemist_name+"</h3>");
 			}
 			else{
 				chemistID = rs.getString(1);
@@ -108,7 +173,7 @@
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			out.println("주문이 접수되었습니다.<br>");
+			out.println("<h3>주문이 접수되었습니다.<br></h3>");
 			//stmt.close(); 
 			rs.close();
 		} catch (SQLException e) {
