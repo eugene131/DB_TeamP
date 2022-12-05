@@ -59,7 +59,7 @@ h3 {
 	width: 400px;
 	height: 44px;
 	left: calc(50% - 307px/2 - 0.5px);
-	top: 100px;
+	top: 200px;
 	
 	font-family: 'Inter';
 	font-style: normal;
@@ -196,7 +196,8 @@ String sql = null;
 	
 	}
 	else{
-		out.println("조회된 기록이 없습니다<br>");
+		out.println("<h3>조회된 기록이 없습니다</h3>");
+		out.println("<h4><button onclick = \"location.href = 'test3-1.html'\" id=\"back_btn\">이전으로</button></h4>");
 	}	
 	
 rs.close();

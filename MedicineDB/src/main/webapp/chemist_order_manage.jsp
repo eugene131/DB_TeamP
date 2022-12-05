@@ -60,7 +60,7 @@ h3 {
 	width: 400px;
 	height: 44px;
 	left: calc(50% - 307px/2 - 0.5px);
-	top: 100px;
+	top: 300px;
 	
 	font-family: 'Inter';
 	font-style: normal;
@@ -187,7 +187,7 @@ tr:last-child td:last-child {
 		}
 
 		if (m_count == 0)
-			out.println("조회된 주문기록이 없습니다.");
+			out.println("<h3>조회된 주문기록이 없습니다.</h3>");
 		else{ // 주문 리스트 출력하기
 			
 			Iterator<List<String>> it = order_list.iterator();
