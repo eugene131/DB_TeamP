@@ -158,7 +158,7 @@ String Symptom = request.getParameter("Symptom");
 String sql = null;
 	try{
 		
-	sql = "select * from CLIENT, HAVE where Symptom_num in (select Symptom_num from Symptom where name ='" + Symptom +"') and ID = Client_ID";
+	sql = "select DISTINCT ID, NAME, SEX, BIRTHDAY, C_ADDRESS, PHONE_NUM, CLIENT_ID from CLIENT, HAVE where Symptom_num in (select Symptom_num from Symptom where name ='" + Symptom +"') and ID = Client_ID";
 	rs = stmt.executeQuery(sql);
 	
 
@@ -170,7 +170,7 @@ String sql = null;
 	out.println("<h4> &nbsp;" + Symptom + "&nbsp;증상을 가진 고객 &nbsp;&nbsp;&nbsp;"+
 	"<button onclick = \"location.href = 'test3-1.html'\" id=\"back_btn\">이전으로</button>");
 	out.println("<br><br>");
-	cnt -= 2;
+	cnt -= 1;
 
 	
 	rs.beforeFirst();
